@@ -14,7 +14,6 @@ use App\Http\Controllers\ContactoproveedorController;
 use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\ElementoController;
 use App\Http\Controllers\ElementoinventarioController;
-use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\GrupoelementoController;
 use App\Http\Controllers\ResponsablespordependenciaController;
 use App\Http\Controllers\MarcaController;
@@ -63,7 +62,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('responsablespordependencias', ResponsablespordependenciaController::class);
     Route::resource('marcas', MarcaController::class);
     Route::resource('movimientos', MovimientoController::class);
-    Route::resource('estados', EstadoController::class);
     Route::resource('movimientoinvs', MovimientoinvController::class);
     Route::resource('elementosinv', ElementoinventarioController::class);
     Route::resource('elementos', ElementoController::class);

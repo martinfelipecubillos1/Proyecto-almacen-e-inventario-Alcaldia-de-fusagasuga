@@ -26,10 +26,6 @@
         <i class=" fas fa-blog"></i><span>Marcas</span>
     </a>
 
-    <a class="nav-link" href="/estados">
-        <i class=" fas fa-blog"></i><span>Estados</span>
-    </a>
-
     <a class="nav-link" href="/movimientos">
         <i class=" fas fa-blog"></i><span>Movimientos</span>
     </a>
