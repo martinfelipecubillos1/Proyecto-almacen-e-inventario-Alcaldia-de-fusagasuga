@@ -17,11 +17,6 @@
         <i class=" fas fa-university"></i><span>Compañias</span>
     </a>
 
-
-    <a class="nav-link" href="/cargos">
-        <i class=" fas fa-briefcase"></i><span>Cargos</span>
-    </a>
-
     <a class="nav-link" href="/marcas">
         <i class=" fas fa-blog"></i><span>Marcas</span>
     </a>
