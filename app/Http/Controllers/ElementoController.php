@@ -49,7 +49,7 @@ class ElementoController extends Controller
         if (request('nombreelemento'))
             Elemento::create($request->all());
 
-        return redirect()->route('grupos.index');
+      return back()->withInput();
     }
 
     public function show($id)
@@ -98,6 +98,6 @@ class ElementoController extends Controller
     {
         DB::table('elementos')->where('id', $id)->delete();
 
-        return redirect()->route('grupos.index');
+        return back()->withInput();
     }
 }

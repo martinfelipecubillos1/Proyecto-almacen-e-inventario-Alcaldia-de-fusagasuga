@@ -7,9 +7,8 @@
 
     <div class="card card-primary">
 
-        <img class="navbar-brand-full app-header-logo" src="{{ asset('img/logo.png') }}" width="65"
-        alt="Infyom Logo">
-        <div class="card-header"><h4>Admin Login</h4></div>
+
+        <div class="card-header"><h4> Login</h4></div>
              <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
                 @csrf

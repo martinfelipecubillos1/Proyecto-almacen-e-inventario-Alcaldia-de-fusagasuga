@@ -16,12 +16,13 @@ class movimientoinvseeder extends Seeder
 
             Movimientoinv::create([
                 'responsable' => 1,
-                'elemento' => 1,
-                'estado' => 2,
-                'proveedor' => 1,
+                'elemento' => 2,
                 'tipomovimiento' => 1,
                 'usuario' => 1,
-                'actualiza' => 2,
+                'actualiza' => 1,
+                'cantidad' => 1,
+                'preciounitario' => 123,
+                'preciototal' => 123,
             ]);
     }
 }

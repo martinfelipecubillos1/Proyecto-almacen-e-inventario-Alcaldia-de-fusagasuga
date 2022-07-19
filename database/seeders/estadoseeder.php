@@ -17,11 +17,17 @@ class estadoseeder extends Seeder
         $estado =  [
             ['nombreestado'=> 'Bueno'],
 
-
             ['nombreestado'=> 'Dañado'],
 
-
             ['nombreestado'=> 'Funcional'],
+
+            ['nombreestado'=> 'Obsoleto'],
+
+            ['nombreestado'=> 'Antiguo'],
+
+            ['nombreestado'=> 'Inservible'],
+
+            ['nombreestado'=> 'Roto'],
         ];
         DB::table('estados')->insert($estado);
 

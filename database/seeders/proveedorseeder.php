@@ -15,23 +15,37 @@ class proveedorseeder extends Seeder
     public function run()
     {
 
-
-
         $proveedor =  [
             [
-            'nombreproveedor'=> 'Asus',
-            'contacto' => '300*******'],
+                'identificacion' => 'CC',
+                'numero' => '1002685456',
+                'tipo' => '1',
+                'nombreproveedor' => 'pepito perez',
+                'direccion' => 'pepiteria cra3 - 16b ',
+                'correo' => 'pepitoperez@gmail.com',
+                'telefono' => '3125315886'
+            ],
 
             [
-            'nombreproveedor'=> 'HP',
-            'contacto' => '315*******'],
+                'identificacion' => 'Nit',
+                'numero' => '10026887821',
+                'tipo' => '2',
+                'nombreproveedor' => 'Asus company',
+                'direccion' => '1 de mayo cra 18 - 57b ',
+                'correo' => 'Asuscompany@gmail.com',
+                'telefono' => '5489351548'
+            ],
 
             [
-            'nombreproveedor'=> 'ACER',
-            'contacto' => '321*******'],
-
+                'identificacion' => 'NIT',
+                'numero' => '104886680',
+                'tipo' => '3',
+                'nombreproveedor' => 'Constructoras sas',
+                'direccion' => 'Cra 21 #  34a -26',
+                'correo' => 'Constructoras@gmail.com',
+                'telefono' => '876541587'
+            ],
         ];
         DB::table('proveedors')->insert($proveedor);
-
     }
 }

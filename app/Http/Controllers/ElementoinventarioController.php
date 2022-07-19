@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contrato;
+use App\Models\Donacion;
 use App\Models\Elemento;
 use App\Models\Elementoinventario;
+use App\Models\Estado;
 use App\Models\Marca;
 use App\Models\Referencia;
 use App\Models\Responsable;
@@ -11,6 +14,7 @@ use App\Models\Unidad;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
+
 class ElementoinventarioController extends Controller
 {
     /**
@@ -18,11 +22,37 @@ class ElementoinventarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $elementos = Elemento::all();
 
-        return view('elementosinv.index', compact('elementos') );
+        $texto = trim($request->get('texto'));
+
+        $contratos = Contrato::all();
+
+
+
+
+        //dd($texto2->all());
+
+        $elementoinventarios = DB::table('elementoinventarios')
+            ->join('elementos', 'elementos.id', '=', 'elementoinventarios.elemento')
+            ->join('contratos', 'contratos.id', '=', 'elementoinventarios.contrato')
+            ->join('estados', 'estados.id', '=', 'elementoinventarios.estado')
+            ->join('subgrupoelementos', 'subgrupoelementos.id', '=', 'elementos.codigosubgrupo')
+            ->select('elementoinventarios.*', 'elementos.nombreelemento', 'estados.nombreestado', 'contratos.numero', 'contratos.objetocontractual')
+            ->where('contratos.numero', 'LIKE', '%' . $texto . '%')
+            ->orwhere('placainterna', '=', $texto)
+            ->orwhere('placaexterna', '=', $texto)
+            ->orwhere('serial', '=', $texto)
+            ->orwhere('elementos.nombreelemento', '=', $texto)
+            ->orderBy('id', 'asc')
+            ->get();
+        //->tosql();
+
+        //  dd($elementoinventarios);
+
+        //  dd($elementoinventarios->all());
+        return view('elementosinv.index', compact('elementoinventarios', 'texto', 'contratos'));
     }
 
     /**
@@ -32,11 +62,7 @@ class ElementoinventarioController extends Controller
      */
     public function create()
     {
-        $elementos = Elemento::all();
-        $marcas = Marca::all();
-        $referencias = Referencia::all();
-        $unidads = Unidad::all();
-        return view('elementosinv.crear', compact('elementos','marcas','referencias','unidads'));
+        //se remplaza por el comoponente crearelementoinv de livewire
     }
 
     /**
@@ -48,20 +74,91 @@ class ElementoinventarioController extends Controller
     public function store(Request $request)
     {
 
-        request()->validate([
-            'elemento' =>'required',
-            'marca' =>'required',
-            'referencia' =>'required',
-            'unidad' =>'required',
-            'placainterna' =>'required',
-            'placaexterna' =>'required',
 
+
+       request()->validate([
+        'elemento' => 'required',
+        'contrato' => 'required',
+        'preciounitario' => 'required',
+        'estado' => 'required',
+        'cantidad' => 'required',
+]);
+
+ // dd($request->all());
+
+$consu=false;
+        if ($request->consumible == "si") {
+
+            $Prueba = DB::table('elementoinventarios')
+                ->select('elementoinventarios.*')
+                ->where('elemento', '=', $request->get('elemento'))
+                ->where('consumible', '=', $request->consumible)
+                ->where('contrato', '=', $request->contrato)
+                ->get();
+
+            $cant = $Prueba->count();
+
+            if ($cant > 0) {
+                $consu = true;
+            }
+        }else{
+            request()->validate([
+                'placainterna' => 'required|unique:elementoinventarios',
+                'placaexterna' => 'required|unique:elementoinventarios',
+                'serial' => 'required',
             ]);
-           // dd($request->all());
+        }
 
-           Elementoinventario::create($request->all());
+     // dd($consu,$cant);
+if($consu){
+    request()->validate([
+        'repeticiondelementoconsumible' => 'required',
+    ]);
+}else{
 
-    return redirect()->route('elementosinv.index');
+        $isPresent = false;
+        $elementoinvs = Elementoinventario::all();
+        foreach ($elementoinvs as $elementoinv) {
+
+            if ($request->placainterna == $elementoinv->placaexterna)
+                $isPresent = true;
+
+            if ($request->placaexterna == $elementoinv->placainterna)
+                $isPresent = true;
+        }
+
+
+        //dd($isPresent);
+
+        if ($isPresent) {
+            request()->validate([
+                'repeticion' => 'required',
+            ]);
+        } else {
+
+            if ($request->get('asignado') == null) {
+                $request->merge(['asignado' => ""]);
+            }
+
+            if ($request->get('baja') == null) {
+                $request->merge(['baja' => ""]);
+            }
+
+            if ($request->get('consumible') == null) {
+                $request->merge(['consumible' => ""]);
+            }
+
+
+            $request->merge(['cantidadtotal' => $request->get('cantidad') ]);
+            $request->merge(['preciototal' => $request->get('preciounitario') * $request->get('cantidadtotal')]);
+            //dd($request->all());
+
+
+            Elementoinventario::create($request->all());
+
+            return redirect()->route('elementosinv.index');
+        }
+    }
     }
 
     /**
@@ -73,24 +170,18 @@ class ElementoinventarioController extends Controller
     public function show($id)
     {
 
-
+        //  dd($responsablespordependencias);
         $elementoinventarios = DB::table('elementoinventarios')
-        ->join('elementos', 'elementos.id', '=', 'elementoinventarios.elemento')
-        ->join('marcas', 'marcas.id', '=', 'elementoinventarios.marca')
-        ->join('referencias', 'referencias.id', '=', 'elementoinventarios.referencia')
-        ->join('unidads', 'unidads.id', '=', 'elementoinventarios.unidad')
-        ->where('elemento', '=', $id)
-        ->select('elementoinventarios.*', 'elementos.nombreelemento', 'marcas.nombremarca', 'referencias.nombrereferencia', 'unidads.nombreunidad')
-        ->get();
-      //  dd($responsablespordependencias);
+            ->join('elementos', 'elementos.id', '=', 'elementoinventarios.elemento')
+            ->join('contratos', 'contratos.id', '=', 'elementoinventarios.contrato')
+            ->where('contrato', '=', $id)
+            ->select('elementoinventarios.*', 'elementos.nombreelemento', 'contratos.numero')
+            ->get();
+        // $responsablespordependencias = responsablespordependencia::paginate(5);
 
-       // $responsablespordependencias = responsablespordependencia::paginate(5);
+        $elementos = Elemento::all();
 
-       $elementos = Elemento::all();
-
-       return view('elementosinv.show', compact('elementoinventarios','elementos' ));
-
-
+        return view('elementosinv.show', compact('elementoinventarios', 'elementos'));
     }
 
     /**
@@ -101,15 +192,12 @@ class ElementoinventarioController extends Controller
      */
     public function edit($id)
     {
-
+        $estados = Estado::all();
         $elementos = Elemento::all();
-        $marcas = Marca::all();
-        $referencias = Referencia::all();
-        $unidads = Unidad::all();
-
+        $contratos = Contrato::all();
         $elementoinventario = Elementoinventario::find($id);
 
-      return view('elementosinv.editar', compact('elementoinventario','elementos','marcas','referencias','unidads'));
+        return view('elementosinv.editar', compact('elementoinventario', 'elementos', 'contratos', 'estados'));
     }
 
     /**
@@ -121,21 +209,26 @@ class ElementoinventarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-    // dd($request->all());
+        // dd($request->all());
         request()->validate([
-            'cargo' =>'required',
-            'dependencia' =>'required',
-            'compania' =>'required',
-      //        'correo' =>'required|unique:responsables',
-      'placainterna' =>'required',
-      'placaexterna' =>'required',
+            'contrato' => 'required',
 
-            ]);
-            //dd($request->all());
+        ]);
+        //dd($request->all());
+        $elementoinventario = Elementoinventario::find($id);
 
-           $responsable = Elementoinventario::find($id);
-    $responsable->update($request->all());
-    return redirect()->route('elementosinv.index');
+        $request->merge(['cantidadtotal' => $request->get('cantidad') + $elementoinventario->cantidadtotal ]);
+        $request->merge(['cantidad' => $request->get('cantidad') + $elementoinventario->cantidad ]);
+        $request->merge(['preciototal' => $request->get('preciounitario') * $request->get('cantidadtotal')]);
+
+      //  dd($request->get('cantidad') ,$request->cantidadtotal, $elementoinventario->cantidadtotal, $request->preciototal);
+
+
+
+
+        $responsable = Elementoinventario::find($id);
+        $responsable->update($request->all());
+        return redirect()->route('elementosinv.index');
     }
 
     /**

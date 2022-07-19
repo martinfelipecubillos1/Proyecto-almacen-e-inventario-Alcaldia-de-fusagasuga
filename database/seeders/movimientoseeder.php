@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 use Illuminate\Support\Facades\DB;
+
 class movimientoseeder extends Seeder
 {
     /**
@@ -16,16 +17,26 @@ class movimientoseeder extends Seeder
     {
         $movimiento =  [
             [
-            'nombremovimiento'=> 'salida',],
+                'nombremovimiento' => 'asignar',
+            ],
 
             [
-            'nombremovimiento'=> 'entrada',],
+                'nombremovimiento' => 'entregar',
+            ],
 
             [
-            'nombremovimiento'=> 'prestamo',],
+                'nombremovimiento' => 'transpaso entrega',
+            ],
+
+            [
+                'nombremovimiento' => 'transpaso asignacion',
+            ],
+
+            [
+                'nombremovimiento' => 'baja/salida',
+            ],
 
         ];
         DB::table('movimientos')->insert($movimiento);
-
     }
 }

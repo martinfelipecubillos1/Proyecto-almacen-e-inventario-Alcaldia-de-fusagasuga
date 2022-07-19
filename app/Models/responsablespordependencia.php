@@ -11,5 +11,5 @@ class responsablespordependencia extends Model
 
     protected $table ='responsablespordependencias';
 
-    protected $fillable = ['id','responsable', 'dependencia'];
+    protected $fillable = ['id','responsable', 'dependencia','jefe','activo'];
 }

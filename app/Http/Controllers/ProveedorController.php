@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proveedor;
+use App\Models\Tipoproveedor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,12 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        $Proveedores = Proveedor::paginate(5);
+        $Proveedores = DB::table('proveedors')
+        ->join('tipoproveedors', 'tipoproveedors.id', '=', 'proveedors.tipo')
+        ->select('proveedors.*', 'tipoproveedors.nombre' )
+        ->paginate(5);
+
+      //  dd($Proveedores->all());
         return view('proveedores.index', compact('Proveedores'));
 
 
@@ -29,7 +35,7 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        return view('proveedores.crear');
+      // se usa la funcion crearproveedorlivewire
     }
 
     /**
@@ -40,12 +46,17 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-
         request()->validate([
+            'identificacion' =>'required',
+            'numero' =>'required',
+            'tipo' =>'required',
             'nombreproveedor' =>'required',
-            'contacto' =>'required',
+            'direccion' =>'required',
+            'correo' =>'required|email',
+            'telefono' =>'required',
             ]);
 
+        //    dd($request->all());
             Proveedor::create($request->all());
 
     return redirect()->route('proveedores.index');
@@ -70,8 +81,13 @@ class ProveedorController extends Controller
      */
     public function edit($id)
     {
-        $proveedor = Proveedor::find($id);
-        return view('proveedores.editar', compact('proveedor'));
+$proveedor = Proveedor::find($id);
+
+
+$tipoproveedor = Tipoproveedor::find($proveedor->tipo);
+
+
+        return view('proveedores.editar', compact('proveedor','tipoproveedor'));
     }
 
     /**
@@ -86,12 +102,12 @@ class ProveedorController extends Controller
 
         request()->validate([
            // 'codigoproveedor' => 'required|unique:proveedors',
-            'nombreproveedor' =>'required',
-            'contacto' =>'required',
-
-
+           'nombreproveedor' =>'required',
+           'direccion' =>'required',
+           'correo' =>'required|email',
+           'telefono' =>'required',
             ]);
-            //dd($request->all());
+           // dd($request->all());
 
            $proveedor = Proveedor::find($id);
     $proveedor->update($request->all());

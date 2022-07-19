@@ -18,13 +18,25 @@ class ResponsablespordependenciaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        $dependencias = Dependencia::all();
+        $texto="";
+
+
+        $texto=$request->get('texto');
+
+
         //consulta de llaves foraneas a la vista
+
+
         $responsablespordependencias = DB::table('responsablespordependencias')
             ->join('responsables', 'responsables.id', '=', 'responsablespordependencias.responsable')
             ->join('dependencias', 'dependencias.id', '=', 'responsablespordependencias.dependencia')
             ->join('cargos', 'cargos.id', '=', 'responsables.cargo')
+            ->where('dependencia', 'LIKE', '%'.$texto.'%')
+        ->orderBy('id','asc')
             ->select('responsablespordependencias.*', 'responsables.nombre', 'cargos.nombrecargo', 'dependencias.nombredependencia')
             ->get();
         //  dd($responsablespordependencias);
@@ -33,7 +45,7 @@ class ResponsablespordependenciaController extends Controller
 
 
 
-        return view('responsablespordependencias.index', compact('responsablespordependencias'));
+        return view('responsablespordependencias.index', compact('responsablespordependencias','texto','dependencias',));
     }
 
     /**
@@ -62,9 +74,13 @@ class ResponsablespordependenciaController extends Controller
         request()->validate([
             'responsable' => 'required',
             'dependencia' => 'required',
-
         ]);
         // dd($request->all());
+        $request->merge(['jefe'=>""]);
+        $request->merge(['activo'=>"si"]);
+          //  dd($request->all());
+
+
 
         responsablespordependencia::create($request->all());
 
@@ -109,7 +125,7 @@ class ResponsablespordependenciaController extends Controller
      */
     public function update(Request $request, $id)
     {
-         dd($request->all());
+        // dd($request->all());
         request()->validate([
 
             'responsable' => 'required',
@@ -119,6 +135,14 @@ class ResponsablespordependenciaController extends Controller
 
         ]);
         //dd($request->all());
+if($request->get('jefe') == null){
+$request->merge(['jefe'=>""]);
+}
+
+if($request->get('activo') == null){
+    $request->merge(['activo'=>""]);
+    }
+
 
         $responsable = responsablespordependencia::find($id);
         $responsable->update($request->all());

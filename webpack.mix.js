@@ -11,7 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js');
+//mix.js('resources/js/app.js', 'public/js');
+
 mix.styles(['resources/js/app.js'], 'public/css/app.css').version();
 
 mix.styles([
@@ -28,6 +29,10 @@ mix.js(
     .js('resources/assets/js/profile.js', 'public/assets/js/profile.js')
     .js('resources/assets/js/custom/custom.js', 'public/assets/js/custom/custom.js')
     .js('resources/assets/js/custom/custom-datatable.js', 'public/assets/js/custom/custom-datatable.js')
+    .js("resources/js/app.js", "public/js")
+    .postCss("resources/css/app.css", "public/css", [
+      require("tailwindcss"),
+    ])
     .version();
 
 

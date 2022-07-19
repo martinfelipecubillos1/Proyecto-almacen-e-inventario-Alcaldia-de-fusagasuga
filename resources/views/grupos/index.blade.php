@@ -6,7 +6,7 @@
             <h3 class="page__heading">Grupos de Elementos</h3>
         </div>
 
-        @can('crear-rol')
+        @can('crear-Usuario')
             <a class="form-control btn btn-success" href="{{ route('grupos.create') }}">Nuevo</a>
         @endcan
 
@@ -28,18 +28,22 @@
                                                 <form action="{{ route('grupos.destroy', $grupo->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
+                                                    @can('ver-Usuario')
                                                     <h5><a class="text-white text-left"
                                                             href="{{ route('subgrupos.show', $grupo->id) }}">
                                                             {{ $grupo->nombregrupo }}</a>
+                                                            @endcan
                                                         <br>
+                                                        @can('editar-Usuario')
                                                         <a class="text-white text-left btn "
                                                             style="background-color:#40CFFF"
                                                             href="{{ route('grupos.edit', $grupo->id) }}">
-                                                            Crear
-
-
-                                                        </a> <button type="submit" class="btn text-white"
-                                                            style="background-color:#c5005c">Borrar</button>
+                                                            Crear</a>
+                                                            @endcan
+                                                            @can('borrar-rol')
+                                                             <button type="submit" class="btn text-white"
+                                                                style="background-color:#c5005c">Borrar</button>
+                                                        @endcan
                                                     </h5>
 
 

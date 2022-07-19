@@ -11,7 +11,9 @@ use App\Http\Controllers\DependenciaController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ResponsableController;
 use App\Http\Controllers\cargoController;
+use App\Http\Controllers\ContactoproveedorController;
 use App\Http\Controllers\ContratoController;
+use App\Http\Controllers\DonacionController;
 use App\Http\Controllers\ElementoController;
 use App\Http\Controllers\ElementoinventarioController;
 use App\Http\Controllers\EstadoController;
@@ -24,6 +26,10 @@ use App\Http\Controllers\MovimientoinvController;
 use App\Http\Controllers\ReferenciaController;
 use App\Http\Controllers\SubgrupoelementoController;
 use App\Http\Livewire\Contratos;
+use App\Http\Livewire\Crearcontratos;
+use App\Http\Livewire\Crearelementoinv;
+use App\Http\Livewire\Crearproveedores;
+use App\Http\Livewire\Movi;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +54,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/home2', [App\Http\Controllers\HomeController::class, 'create'])->name('home2');
 
       //y creamos un grupo de rutas protegidas para los controladores}
 Route::group(['middleware' => ['auth']], function() {
@@ -63,7 +69,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('responsablespordependencias', ResponsablespordependenciaController::class);
     Route::resource('unidades', UnidadController::class);
     Route::resource('marcas', MarcaController::class);
-    Route::resource('referencias', ReferenciaController::class);
     Route::resource('movimientos', MovimientoController::class);
     Route::resource('estados', EstadoController::class);
     Route::resource('movimientoinvs', MovimientoinvController::class);
@@ -71,9 +76,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('elementos', ElementoController::class);
     Route::resource('grupos', GrupoelementoController::class);
     Route::resource('subgrupos', SubgrupoelementoController::class);
-    Route::resource('contratos2', ContratoController::class);
+    Route::resource('contratos', ContratoController::class);
+    Route::resource('donaciones', DonacionController::class);
+    Route::resource('contactosproveedor', ContactoproveedorController::class);
 
-    Route::get('contratos',Contratos::class);
-
-
+    Route::get('movi', Movi::class);
+    Route::get('crearcontratos', Crearcontratos::class);
+    Route::get('crearproveedores', Crearproveedores::class);
+    Route::get('crearelementoinv', Crearelementoinv::class);
 });

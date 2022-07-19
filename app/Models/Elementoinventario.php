@@ -9,6 +9,9 @@ class Elementoinventario extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','elemento','marca', 'referencia','unidad','placainterna','placaexterna',];
+    protected $fillable = ['id',
+    'elemento',
+    'placainterna','placaexterna','serial','preciounitario','cantidad','cantidadtotal','preciototal','contrato','asignado','consumible','estado','baja'];
 
 }
+

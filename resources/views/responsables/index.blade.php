@@ -12,7 +12,7 @@
                         <div class="card-body">
 
 
-                        @can('crear-unidad')
+                            @can('crear-Usuario')
                         <a class="btn btn-warning" href="{{ route('responsables.create') }}">Nuevo</a>
                         @endcan
 
@@ -37,7 +37,7 @@
                                 <td>
 
                                     <form action="{{ route('responsables.destroy',$responsable->id) }}" method="POST">
-                                        @can('editar-Compania')
+                                        @can('editar-Usuario')
                                         <a class="btn btn-info" href="{{ route('responsables.edit', $responsable->id) }}">Editar</a>
                                         @endcan
 

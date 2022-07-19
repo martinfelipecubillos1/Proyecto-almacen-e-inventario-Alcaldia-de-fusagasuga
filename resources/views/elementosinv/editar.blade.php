@@ -3,8 +3,10 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Editar Empleados</h3>
+            <h3 class="page__heading">Editar Elemento del inventarios
+            </h3>
         </div>
+
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
@@ -31,9 +33,9 @@
                                     <label for="contenido">elemento</label>
                                     @foreach ($elementos as $elemento)
                                         @if ($elemento->id == $elementoinventario->elemento)
-                                            <input style="visibility:hidden " type="text" name="elemento"
-                                                id="elemento" value="{{ $elemento->id }}">
-                                                <br>
+                                            <input style="visibility:hidden " type="text" name="elemento" id="elemento"
+                                                value="{{ $elemento->id }}">
+                                            <br>
                                             {{ $elemento->nombreelemento }} </input>
                                         @endif
                                     @endforeach
@@ -44,17 +46,36 @@
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="contenido">marcas</label>
-                                    <select class="form-control" name="cargo" id="cargo">
-                                        @foreach ($marcas as $marca)
-                                            @if ($marca->id == $elementoinventario->marca)
-                                                <option value="{{ $marca->id }}"> {{ $marca->nombremarca }}</option>
+                                    <label for="contenido">Contrato</label>
+                                    <select class="form-control" name="contrato" id="contrato">
+                                        @foreach ($contratos as $contrato)
+                                            @if ($contrato->id == $elementoinventario->contrato)
+                                                <option value="{{ $contrato->id }}"> {{ $contrato->numero }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="contenido">Estado</label>
+                                    <select class="form-control" name="estado" id="estado">
+
+                                        @foreach ($estados as $estado)
+                                            @if ($estado->id == $elementoinventario->estado)
+                                                <option value="{{ $estado->id }}">{{ $estado->nombreestado }} </option>
                                             @endif
                                         @endforeach
 
-                                        @foreach ($marcas as $marca)
-                                            <option value="{{ $marca->id }}">{{ $marca->nombremarca }}
+
+                                        @foreach ($estados as $estado)
+                                            @if ($estado->id == $elementoinventario->estado)
+                                            @else
+                                                <option value="{{ $estado->id }}">{{ $estado->nombreestado }}
                                                 </option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -62,72 +83,35 @@
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="contenido">referencia</label>
-                                    <select class="form-control" name="dependencia" id="dependencia">
-                                        @foreach ($referencias as $referencia)
-                                        @if ($referencia->id == $elementoinventario->referencia)
-                                            <option value="{{ $referencia->id }}">{{ $referencia->nombrereferencia }}</option>
-                                        @endif
-                                    @endforeach
+                                    @if ($elementoinventario->consumible == '')
+                                        <label for="titulo">Cantidad</label>
+                                        <select class="form-control" name="cantidad" id="cantidad">
+                                            <option value="{{ $elementoinventario->cantidad }}">
+                                                {{ $elementoinventario->cantidad }} </option>
+                                        </select>
+                                    @else
+                                        <label for="titulo">Cantidad actual:{{ $elementoinventario->cantidad }}</label>
+                                        <input type="text" name="cantidad" class="form-control">
+                                    @endif
+                                </div>
+                            </div>
 
-                                        @foreach ($referencias as $referencia)
-                                            <option value="{{ $referencia->id }}">{{ $referencia->nombrereferencia }}
-                                            </option>
-                                        @endforeach
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="contenido">Precio unitario</label>
+                                    <select class="form-control" name="preciounitario" id="preciounitario">
+                                                <option value="{{ $elementoinventario->preciounitario }}"> {{ $elementoinventario->preciounitario }}</option>
                                     </select>
                                 </div>
                             </div>
 
-
-
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="contenido">Unidad</label>
-                                    <select class="form-control" name="compania" id="compania">
-
-                                        @foreach ($unidads as $unidad)
-                                        @if ($unidad->id == $elementoinventario->unidad)
-                                            <option value="{{ $unidad->id }}">{{ $unidad->nombreunidad }}</option>
-                                        @endif
-                                    @endforeach
-
-
-
-                                        @foreach ($unidads as $unidad)
-                                            <option value="{{ $unidad->id }}">{{ $unidad->nombreunidad }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="">Placa interna:</label>
-                                    <br/>
-                                 {!! Form::text('placainterna', null, array('class' => 'form-control')) !!}
-                                 <br/>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="">Placa externa:</label>
-                                    <br/>
-                                 {!! Form::text('placaexterna', null, array('class' => 'form-control')) !!}
-                                 <br/>
-                                </div>
-                            </div>
-
-
-
+                            <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                    {!! Form::close() !!}
+                        {!! Form::close() !!}
 
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
         </div>
     </section>

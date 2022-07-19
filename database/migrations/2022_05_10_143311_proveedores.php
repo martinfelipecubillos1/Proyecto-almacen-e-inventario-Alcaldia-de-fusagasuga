@@ -15,8 +15,14 @@ class Proveedores extends Migration
     {
         Schema::create('proveedors',function(Blueprint $table){
             $table->id();
+            $table->String('identificacion');
+            $table->String('numero');
+            $table->unsignedBigInteger('tipo');
             $table->String('nombreproveedor');
-            $table->String('contacto');
+            $table->String('direccion');
+            $table->String('correo');
+            $table->String('telefono');
+            $table->foreign('tipo')->references('id')->on('tipoproveedors');
             $table->timestamps();
         });
         }

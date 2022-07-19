@@ -24,10 +24,10 @@ class SeederTablaPermisos extends Seeder
             'borrar-rol',
 
             //Operacions sobre tabla blogs
-            'ver-blog',
-            'crear-blog',
-            'editar-blog',
-            'borrar-blog'
+            'ver-Usuario',
+            'crear-Usuario',
+            'editar-Usuario',
+            'borrar-Usuario'
         ];
 
         foreach($permisos as $permiso) {

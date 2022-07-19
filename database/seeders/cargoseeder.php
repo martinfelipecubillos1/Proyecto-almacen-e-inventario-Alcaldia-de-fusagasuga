@@ -16,7 +16,7 @@ class cargoseeder extends Seeder
         $cargo =  [
             ['nombrecargo'=> 'Contratista'],
 
-           [ 'nombrecargo'=> 'Admin'],
+           [ 'nombrecargo'=> 'Funcionario'],
 
             ['nombrecargo'=> 'aseo'],
 

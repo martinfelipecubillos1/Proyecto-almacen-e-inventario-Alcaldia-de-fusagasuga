@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('web/css/components.css') }}">
     @yield('page_css')
 
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @yield('css')
 
@@ -61,6 +61,8 @@
 
     @stack('modals')
     @livewireScripts
+
+    @yield('js')
 </body>
 
 

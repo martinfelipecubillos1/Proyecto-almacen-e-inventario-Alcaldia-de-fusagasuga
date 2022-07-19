@@ -27,17 +27,23 @@
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
+
+                                                    @can('ver-Usuario')
                                                     <h5><a class="text-white text-left"
                                                             href="{{ route('elementos.show', $Subgrupo->id) }}">
                                                             {{ $Subgrupo->nombresubgrupo }} </a>
+                                                            @endcan
                                                         <br>
+                                                        @can('crear-Usuario')
                                                         <a class="text-white text-left btn "
                                                             style="background-color:#40CFFF"
                                                             href="{{ route('subgrupos.edit', $Subgrupo->id) }}">
                                                             Crear
-
+                                                        @endcan
+                                                        @can('crear-Usuario')
                                                         </a> <button type="submit" class="btn text-white"
                                                             style="background-color:#c5005c">Borrar</button>
+                                                            @endcan
                                                     </h5>
 
 

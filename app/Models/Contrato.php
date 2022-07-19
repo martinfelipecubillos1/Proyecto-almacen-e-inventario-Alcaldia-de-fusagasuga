@@ -9,5 +9,21 @@ class Contrato extends Model
 {
 
     use HasFactory;
-    protected $fillable = ['id', 'numero', 'proveedor', 'dependencia', 'tipodecontrato', 'formadepago', 'lugarentrega', 'plazoentrega', 'otrascondiciones','pdf'];
+    protected $fillable = [
+        'id',
+        'numero',
+        'objetocontractual',
+        'proveedor',
+        'dependencia',
+        'costo',
+        'tipodecontrato',
+        'tipodinacion',
+        'formadepago',
+        'lugarentrega',
+        'plazoentrega',
+        'otrascondiciones',
+        'pdf',
+        'finalizado',
+        'created_at',
+    ];
 }

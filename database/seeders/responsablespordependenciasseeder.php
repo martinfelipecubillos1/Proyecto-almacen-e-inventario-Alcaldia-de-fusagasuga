@@ -16,9 +16,28 @@ class responsablespordependenciasseeder extends Seeder
     public function run()
     {
 
-        responsablespordependencia::create([
-            'responsable' => 1,
-            'dependencia' => 1,
-        ]);
+                $responsable =  [
+                    [ 'responsable' => 1,
+                    'dependencia' => 1,
+                    'jefe' => "",
+                    'activo' => "si",],
+
+                    [  'responsable' => 2,
+                    'dependencia' => 1,
+                    'jefe' => "",
+                    'activo' => "",],
+                    [ 'responsable' => 3,
+                    'dependencia' => 1,
+                    'jefe' => "",
+                    'activo' => "si",],
+
+
+                ];
+                DB::table('responsablespordependencias')->insert($responsable);
+
+
+
+
+
     }
 }

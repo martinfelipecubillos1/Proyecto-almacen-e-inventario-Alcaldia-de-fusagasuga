@@ -37,7 +37,7 @@
                                                 @foreach ($responsablespordependencias as $responsablespordependencia)
                                                     @foreach ($responsables as $responsable)
 
-                                                        @if ($responsablespordependencia->id == $responsable->id )
+                                                        @if ($responsablespordependencia->id == $responsable->id && $responsablespordependencia->activo =="si" )
                                                             <option value="{{ $responsablespordependencia->id }}">{{ $responsable->nombre }}
                                                             </option>
                                                         @endif

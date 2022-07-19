@@ -3,8 +3,9 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Editar Empleados</h3>
+            <h3 class="page__heading">Realizar traslado de elemento Empleados</h3>
         </div>
+
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
@@ -26,129 +27,99 @@
                             {!! Form::model($movimientoinv, ['method' => 'PATCH', 'route' => ['movimientoinvs.update', $movimientoinv->id]]) !!}
 
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-sm-3 ">
                                 <div class="form-group">
-                                    <label for="contenido">Empleado</label>
-                                    <select class="form-control" name="responsable" id="responsable">
-                                        <option value="{{ $movimientoinv->responsable}}">
+                                    <label for="titulo">Responsable Actual</label>
+                                    <select class="form-control">
+                                        <option value="{{ $movimientoinv->responsable }}">
+                                            {{ $movimientoinv->nombre }}/{{ $movimientoinv->nombredependencia }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
 
-                                            @foreach ($responsables as $responsable)
-                                                @if ($movimientoinv->responsable == $responsable->id)
-                                                    {{ $responsable->nombre }}
-                                                @endif
-                                            @endforeach
-
+                            <div class="col-sm-3 ">
+                                <div class="form-group">
+                                    <label for="titulo">Movimiento</label>
+                                    <select class="form-control" name="movimiento" id="movimiento">
+                                        <option value="">Seleccione.
                                         </option>
 
-                                        @foreach ($responsablespordependencias as $responsablespordependencia)
-                                            @foreach ($responsables as $responsable)
-                                                @if ($responsablespordependencia->id == $responsable->id)
-                                                    <option value="{{ $responsablespordependencia->id }}">
-                                                        {{ $responsable->nombre }}
-                                                    </option>
-                                                @endif
-                                            @endforeach
-                                        @endforeach
-
+                                        <option value=1 >Traslado
+                                        </option>
+                                        <option value=2 > Salida
+                                        </option>
                                     </select>
-
                                 </div>
                             </div>
 
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+
+
+
+                            <div class="col-sm-3 ">
                                 <div class="form-group">
-                                    <label for="contenido">elementos</label>
-                                    <select class="form-control" name="elemento" id="elemento">
-                                        <option value="{{ $movimientoinv->elemento}}">
-
-                                            @foreach ($elementos as $elemento)
-                                            @if ($movimientoinv->elemento == $elemento->id)
-                                                {{ $elemento->nombreelemento }}
-                                            @endif
-                                        @endforeach
-
+                                    <label for="titulo">Nuevo Responsable</label>
+                                    <select class="form-control" name="responsablenuevo" id="responsablenuevo">
+                                        <option value=""> Seleccione.</option>
+                                        @foreach ($respondependencias as $respondependencia)
+                                        @if($respondependencia->id == $movimientoinv->responsable )
+                                        @else
+                                        <option value="{{ $respondependencia->id }}">
+                                            {{ $respondependencia->nombre }} / {{ $respondependencia->nombredependencia }}
                                         </option>
+                                        @endif
 
-                                        @foreach ($elementoinventarios as $elementoinventario)
-                                            @foreach ($elementos as $elemento)
-                                                @if ($elementoinventario->id == $elemento->id)
-                                                    <option value="{{ $elementoinventario->id }}">
-                                                        {{ $elemento->nombreelemento }}
-                                                    </option>
-                                                @endif
-                                            @endforeach
                                         @endforeach
-
                                     </select>
-
                                 </div>
                             </div>
 
 
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+
+                            <div class="col-sm-3 ">
                                 <div class="form-group">
-                                    <label for="contenido">Estado</label>
+                                    <label for="titulo">Elemento Asignado</label>
+                                    <select class="form-control" >
+                                        <option value="{{ $movimientoinv->elemento }}">
+                                            {{ $movimientoinv->nombreelemento }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3 ">
+                                <div class="form-group">
+                                    <label for="titulo">Responsable Actual</label>
                                     <select class="form-control" name="estado" id="estado">
-                                        <option value= {{ $movimientoinv->estado}}>
-
-                                            @foreach ($estados as $estado)
-                                            @if ($movimientoinv->estado == $estado->id)
-                                                {{ $estado->nombreestado }}
-                                            @endif
-                                        @endforeach
-
+                                        <option value="">Seleccione.
                                         </option>
-                                        @foreach ($estados as $estado)
-                                            <option value="{{ $estado->id }}">{{ $estado->nombreestado }}
-                                            </option>
+                                        @foreach ( $estados as $estado )
+                                        <option value={{$estado->id}} > {{$estado->nombreestado}}
+                                        </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
 
-
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-sm-3 ">
                                 <div class="form-group">
-                                    <label for="contenido">proveedor</label>
-                                    <select class="form-control" name="proveedor" id="proveedor">
-                                        <option value= {{ $movimientoinv->proveedor}}>
-
-                                            @foreach ($proveedors as $proveedor)
-                                            @if ($movimientoinv->proveedor == $proveedor->id)
-                                                {{ $proveedor->nombreproveedor }}
-                                            @endif
-                                        @endforeach
-
-                                        @foreach ($proveedors as $proveedor)
-                                            <option value="{{ $proveedor->id }}">{{ $proveedor->nombreproveedor }}
-                                            </option>
-                                        @endforeach
+                                    <label for="titulo">Precio unitario</label>
+                                    <select class="form-control" >
+                                        <option value="{{ $movimientoinv->preciounitario }}">
+                                            {{ $movimientoinv->preciounitario }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
 
-
-
-
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-sm-3 ">
                                 <div class="form-group">
-                                    <label for="contenido">movimiento</label>
-                                    <select class="form-control" name="tipomovimiento" id="tipomovimiento">
-                                        <option value= {{ $movimientoinv->tipomovimiento}}>
-
-                                            @foreach ($movimientos as $movimiento)
-                                            @if ($movimientoinv->tipomovimiento == $movimiento->id)
-                                                {{ $movimiento->nombremovimiento }}
-                                            @endif
-                                        @endforeach
-
-
-
-                                        @foreach ($movimientos as $movimiento)
-                                            <option value="{{ $movimiento->id }}">
-                                                {{ $movimiento->nombremovimiento }}</option>
-                                        @endforeach
+                                    <label for="titulo">Placas y referencia</label>
+                                    <select class="form-control" >
+                                        <option value=>
+                                            {{ $movimientoinv->placainterna }}/{{ $movimientoinv->placaexterna }} - {{ $movimientoinv->serial }}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -167,11 +138,9 @@
                                 </div>
                             </div>
 
-                            <input  name="actualiza" hidden id="actualiza"  value="{{ \Illuminate\Support\Facades\Auth::user()->id }}">
-
 
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary">Realizar</button>
                     </div>
                     {!! Form::close() !!}
 

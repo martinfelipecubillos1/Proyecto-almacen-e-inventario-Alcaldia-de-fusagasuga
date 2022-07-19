@@ -28,9 +28,7 @@ class tipocontratoseeder extends Seeder
             [
                 'tipodecontrato' => "ENTRADA CONSUMO REQUISICION SUMINISTRO",
             ],
-            [
-                'tipodecontrato' => "ENTRADA DE ELEMENTOS PARA DONACION",
-            ],
+
         ];
         DB::table('tipocontratos')->insert($tipocontrato);
     }

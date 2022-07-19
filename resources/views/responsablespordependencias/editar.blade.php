@@ -61,6 +61,25 @@
                                     </select>
                                 </div>
                             </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                          <div class="form-group">
+                            <input class="form-check-input" type="checkbox" value="jefe" id="jefe" name="jefe">
+                            <label class="form-check-label" for="">
+                              Convertir en Jefe de Area
+                            </label>
+                          </div>
+                        </div>
+
+
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                              <input class="form-check-input" type="checkbox" value="si" id="activo" name="activo" checked>
+                              <label class="form-check-label" for="">
+                                Activo
+                              </label>
+                            </div>
+                          </div>
+
 
 
                         </div>

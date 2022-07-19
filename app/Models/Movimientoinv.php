@@ -14,8 +14,9 @@ class Movimientoinv extends Model
         'id',
         'responsable',
         'elemento',
-        'estado',
-        'proveedor',
+        'cantidad',
+        'preciounitario',
+        'preciototal',
         'tipomovimiento',
         'usuario',
         'actualiza',];

@@ -12,7 +12,7 @@
                         <div class="card-body">
 
 
-                            @can('crear-unidad')
+                            @can('crear-Usuario')
                                 <a class="btn btn-warning" href="{{ route('dependencias.create') }}">Nuevo</a>
                             @endcan
 
@@ -34,14 +34,14 @@
                                             <td>
                                                 <form action="{{ route('dependencias.destroy', $Dependencia->id) }}"
                                                     method="POST">
-                                                    @can('editar-dependencia')
+                                                    @can('editar-Usuario')
                                                         <a class="btn btn-info"
                                                             href="{{ route('dependencias.edit', $Dependencia->id) }}">Editar</a>
                                                     @endcan
 
                                                     @csrf
                                                     @method('DELETE')
-                                                    @can('borrar-dependencia')
+                                                    @can('borrar-rol')
                                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                                     @endcan
                                                 </form>

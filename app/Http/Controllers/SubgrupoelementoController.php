@@ -105,7 +105,6 @@ return redirect()->route('grupos.index');
     public function destroy($id)
     {
         DB::table('subgrupoelementos')->where('id', $id)->delete();
-        $Grupos = Grupoelemento::all();
-       return view('grupos.index',compact('Grupos'));
+        return back()->withInput();
     }
 }

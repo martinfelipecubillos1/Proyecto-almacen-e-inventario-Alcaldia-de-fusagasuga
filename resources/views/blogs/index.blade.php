@@ -14,6 +14,7 @@
 
                         @can('crear-blog')
                         <a class="btn btn-warning" href="{{ route('blogs.create') }}">Nuevo</a>
+
                         @endcan
 
                         <table class="table table-striped mt-2">
