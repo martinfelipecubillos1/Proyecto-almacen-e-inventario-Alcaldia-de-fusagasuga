@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CompaniaController;
 use App\Http\Controllers\DependenciaController;
 use App\Http\Controllers\ProveedorController;
@@ -60,7 +59,6 @@ Route::get('/home2', [App\Http\Controllers\HomeController::class, 'create'])->na
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RolController::class);
     Route::resource('usuarios', UsuarioController::class);
-    Route::resource('blogs', BlogController::class);
     Route::resource('companias', CompaniaController::class);
     Route::resource('dependencias', DependenciaController::class);
     Route::resource('proveedores', ProveedorController::class);

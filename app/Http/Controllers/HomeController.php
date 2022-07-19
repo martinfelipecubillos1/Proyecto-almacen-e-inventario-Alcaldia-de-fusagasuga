@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
-use App\Models\Blog;
 use App\Models\Compania;
 use App\Models\Cargo;
 use App\Models\Contrato;
@@ -37,11 +36,10 @@ class HomeController extends Controller
 
         $cant_usuarios = User::count();
         $cant_roles = Role::count();
-        $cant_blogs = Blog::count();
         $cant_comp = Compania::count();
         $cant_carg = Cargo::count();
         $cant_depe = Dependencia::count();
-        return view('home',compact('cant_usuarios','cant_roles','cant_blogs','cant_comp','cant_carg','cant_depe'));
+        return view('home',compact('cant_usuarios','cant_roles','cant_comp','cant_carg','cant_depe'));
     }
 
     public function create()

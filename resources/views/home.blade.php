@@ -41,18 +41,6 @@
                                 </div>
 
                                 <div class="col-md-3 col-xl-3">
-                                    <div class="card bg-c-pink order-card">
-                                        <div class="card-block">
-                                            <h5>Registros</h5>
-
-                                            <h2 class="text-right"><i
-                                                    class="fa fa-blog f-left"></i><span>{{ $cant_blogs }}</span></h2>
-                                            <p class="m-b-0 text-right"><a href="/blogs" class="text-white">Ver más</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 col-xl-3">
                                     <div class="card bg-c-red order-card">
                                         <div class="card-block">
                                             <h5>Compañias</h5>
