@@ -31,8 +31,7 @@ class ResponsableController extends Controller
      */
     public function create()
     {
-        $cargos = cargo::all();
-        return view('responsables.crear', compact('cargos',));
+        return view('responsables.crear');
     }
 
     /**

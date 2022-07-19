@@ -55,18 +55,6 @@
                                 </div>
 
                                 <div class="col-md-3 col-xl-3">
-                                    <div class="card bg-c-gold order-card">
-                                        <div class="card-block">
-                                            <h5>Cargos</h5>
-
-                                            <h2 class="text-right"><i
-                                                    class="fa fa-briefcase f-left"></i><span>{{ $cant_carg }}</span></h2>
-                                            <p class="m-b-0 text-right"><a href="/cargos" class="text-white">Ver más</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3 col-xl-3">
                                     <div class="card bg-c-gray order-card">
                                         <div class="card-block">
                                             <h5>Dependencias</h5>

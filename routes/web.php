@@ -9,7 +9,6 @@ use App\Http\Controllers\CompaniaController;
 use App\Http\Controllers\DependenciaController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ResponsableController;
-use App\Http\Controllers\cargoController;
 use App\Http\Controllers\ContactoproveedorController;
 use App\Http\Controllers\ContratoController;
 use App\Http\Controllers\ElementoController;
@@ -58,7 +57,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('dependencias', DependenciaController::class);
     Route::resource('proveedores', ProveedorController::class);
     Route::resource('responsables', ResponsableController::class);
-    Route::resource('cargos', cargoController::class);
     Route::resource('responsablespordependencias', ResponsablespordependenciaController::class);
     Route::resource('marcas', MarcaController::class);
     Route::resource('movimientos', MovimientoController::class);

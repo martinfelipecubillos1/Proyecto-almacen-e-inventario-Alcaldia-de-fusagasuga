@@ -25,14 +25,14 @@ class responsableseeder extends Seeder
             'nombre'=> 'Felipe hunberto',
             'correo'=> 'martim@gmal',
             'numero' => '300*******',
-            'cargo' => '2',],
+            'cargo' => '1',],
 
 
             ['cedula'=> '1007726029',
             'nombre'=> 'wilson cangrejo',
             'correo'=> 'martim@gail',
             'numero' => '300*******',
-            'cargo' => '3',],
+            'cargo' => '1',],
 
         ];
         DB::table('responsables')->insert($responsable);

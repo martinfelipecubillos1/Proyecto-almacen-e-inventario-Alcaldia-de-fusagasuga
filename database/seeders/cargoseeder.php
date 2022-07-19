@@ -14,11 +14,7 @@ class cargoseeder extends Seeder
     public function run()
     {
         $cargo =  [
-            ['nombrecargo'=> 'Contratista'],
-
-           [ 'nombrecargo'=> 'Funcionario'],
-
-            ['nombrecargo'=> 'aseo'],
+                   [ 'nombrecargo'=> 'Funcionario'],
 
         ];
         DB::table('cargos')->insert($cargo);

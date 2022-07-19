@@ -45,11 +45,8 @@
                                 <div class="form-group">
                                     <label for="contenido">Cargo</label>
                                     <select class="form-control" name="cargo" id="cargo">
-                                        <option value=""> Seleccione.</option>
-                                        @foreach ($cargos as $cargo)
-                                            <option value="{{$cargo->id}}">{{$cargo->nombrecargo}} </option>
-                                        @endforeach
-                                    </select>
+                                        <option value="1"> Funcionario</option>
+                                                  </select>
                                 </div>
                             </div>
 
