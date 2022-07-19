@@ -26,7 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(grupoelementoseeder::class);
         $this->call(subgrupoelementoseeder::class);
         $this->call(marcaseeder::class);
-        $this->call(unidadseeder::class);
         $this->call(elementoseeder::class);
         $this->call(movimientoseeder::class);
         $this->call(estadoseeder::class);

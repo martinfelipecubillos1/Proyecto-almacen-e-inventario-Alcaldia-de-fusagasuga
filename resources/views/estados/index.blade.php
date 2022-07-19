@@ -12,7 +12,7 @@
                         <div class="card-body">
 
 
-                        @can('crear-unidad')
+                        @can('crear-rol')
                         <a class="btn btn-warning" href="{{ route('estados.create') }}">Nuevo</a>
                         @endcan
 

@@ -17,7 +17,6 @@ use App\Http\Controllers\ElementoinventarioController;
 use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\GrupoelementoController;
 use App\Http\Controllers\ResponsablespordependenciaController;
-use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\MovimientoController;
 use App\Http\Controllers\MovimientoinvController;
@@ -62,7 +61,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('responsables', ResponsableController::class);
     Route::resource('cargos', cargoController::class);
     Route::resource('responsablespordependencias', ResponsablespordependenciaController::class);
-    Route::resource('unidades', UnidadController::class);
     Route::resource('marcas', MarcaController::class);
     Route::resource('movimientos', MovimientoController::class);
     Route::resource('estados', EstadoController::class);

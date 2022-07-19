@@ -25,7 +25,7 @@
                         <div class="card-body">
 
 
-                        @can('crear-unidad')
+                        @can('crear-rol')
                         <a class="btn btn-warning" href="{{ route('elementos.create') }}">Nuevo</a>
                         @endcan
 
@@ -81,7 +81,7 @@
 
 
 
-        @can('crear-unidad')
+        @can('crear-rol')
         <div class="section-body" >
             <div class="row">
                 <div class="col-lg-7">

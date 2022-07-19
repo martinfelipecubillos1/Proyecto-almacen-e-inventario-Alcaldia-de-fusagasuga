@@ -12,7 +12,7 @@
                         <div class="card-body">
 
 
-                        @can('crear-unidad')
+                        @can('crear-rol')
                         <a class="btn btn-warning" href="{{ route('cargos.create') }}">Nuevo</a>
                         @endcan
 
@@ -33,13 +33,13 @@
                                 <td>
 
                                     <form action="{{ route('cargos.destroy',$cargo->id) }}" method="POST">
-                                        @can('editar-Compania')
+                                        @can('editar-rol')
                                         <a class="btn btn-info" href="{{ route('cargos.edit', $cargo->id) }}">Editar</a>
                                         @endcan
 
                                         @csrf
                                         @method('DELETE')
-                                        @can('borrar-Compania')
+                                        @can('borrar-rol')
                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                         @endcan
 

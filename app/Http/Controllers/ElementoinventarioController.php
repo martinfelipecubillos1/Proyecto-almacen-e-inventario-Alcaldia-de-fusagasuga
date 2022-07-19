@@ -8,9 +8,7 @@ use App\Models\Elemento;
 use App\Models\Elementoinventario;
 use App\Models\Estado;
 use App\Models\Marca;
-use App\Models\Referencia;
 use App\Models\Responsable;
-use App\Models\Unidad;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;

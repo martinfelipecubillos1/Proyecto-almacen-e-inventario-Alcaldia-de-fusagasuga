@@ -81,8 +81,6 @@ class ElementoController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            //  'codigounidad' => 'required|unique:unidades',
-            // 'codigoelemento' => 'required|unique:unidades',
             'nombreelemento' => 'required',
             'descripcion' => 'required',
         ]);

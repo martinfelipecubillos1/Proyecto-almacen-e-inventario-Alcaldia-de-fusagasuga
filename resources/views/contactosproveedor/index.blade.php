@@ -12,7 +12,7 @@
                         <div class="card-body">
 
 
-                            @can('crear-unidad')
+                            @can('crear-rol')
                                 <a class="btn btn-warning" href="{{ route('contactosproveedor.edit', $id) }}">Nuevo contacto</a>
                             @endcan
 
