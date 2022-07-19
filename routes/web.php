@@ -12,7 +12,6 @@ use App\Http\Controllers\ResponsableController;
 use App\Http\Controllers\cargoController;
 use App\Http\Controllers\ContactoproveedorController;
 use App\Http\Controllers\ContratoController;
-use App\Http\Controllers\DonacionController;
 use App\Http\Controllers\ElementoController;
 use App\Http\Controllers\ElementoinventarioController;
 use App\Http\Controllers\EstadoController;
@@ -22,9 +21,7 @@ use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\MovimientoController;
 use App\Http\Controllers\MovimientoinvController;
-use App\Http\Controllers\ReferenciaController;
 use App\Http\Controllers\SubgrupoelementoController;
-use App\Http\Livewire\Contratos;
 use App\Http\Livewire\Crearcontratos;
 use App\Http\Livewire\Crearelementoinv;
 use App\Http\Livewire\Crearproveedores;
@@ -75,7 +72,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('grupos', GrupoelementoController::class);
     Route::resource('subgrupos', SubgrupoelementoController::class);
     Route::resource('contratos', ContratoController::class);
-    Route::resource('donaciones', DonacionController::class);
     Route::resource('contactosproveedor', ContactoproveedorController::class);
 
     Route::get('movi', Movi::class);
