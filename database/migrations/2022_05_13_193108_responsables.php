@@ -17,10 +17,9 @@ class Responsables extends Migration
             $table->id();
             $table->String('cedula')->unique();
             $table->String('nombre');
-            $table->unsignedBigInteger('cargo');
+            $table->String('cargo');
             $table->String('correo')->unique();
             $table->String('numero');
-            $table->foreign('cargo')->references('id')->on('cargos');
             $table->timestamps();
         });
     }

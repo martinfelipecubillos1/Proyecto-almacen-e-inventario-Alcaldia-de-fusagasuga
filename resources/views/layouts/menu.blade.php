@@ -17,16 +17,6 @@
         <i class=" fas fa-university"></i><span>Compañias</span>
     </a>
 
-    <a class="nav-link" href="/marcas">
-        <i class=" fas fa-blog"></i><span>Marcas</span>
-    </a>
-
-    <a class="nav-link" href="/movimientos">
-        <i class=" fas fa-blog"></i><span>Movimientos</span>
-    </a>
-
-
-
     @endcan
 
     @can('editar-Usuario')
@@ -68,9 +58,6 @@
     </a>
 
   @endcan
-
-
-
 
 
 

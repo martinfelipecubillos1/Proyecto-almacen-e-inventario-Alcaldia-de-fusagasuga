@@ -35,30 +35,16 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <label for="">nombre:</label>
-                                <br/>
+
                              {!! Form::text('nombre', null, array('class' => 'form-control')) !!}
-                             <br/>
+
                             </div>
                         </div>
 
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <label for="contenido">Cargo</label>
-                                <select class="form-control" name="cargo" id="cargo">
-                                    @foreach ($cargos as $cargo)
-                                        @if ($cargo->id == $responsable->cargo)
-                                            <option value="{{ $cargo->id }}"> {{ $cargo->nombrecargo }}</option>
-                                     @endif
-                                    @endforeach
-
-                                    @foreach ($cargos as $cargo)
-                                    @if ($cargo->id == $responsable->cargo)
-                                    @else
-                                    <option value="{{ $cargo->id }}"> {{ $cargo->nombrecargo }}</option>
-
-                                       @endif>
-                                        @endforeach
-                                </select>
+                                {!! Form::text('cargo', null, array('class' => 'form-control')) !!}
                             </div>
                         </div>
 

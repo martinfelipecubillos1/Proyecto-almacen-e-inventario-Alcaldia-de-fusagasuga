@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grupoelemento;
-use App\Models\Marca;
 use App\Models\Subgrupoelemento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -79,9 +78,9 @@ return redirect()->route('grupos.index');
     public function edit($id)
     {
      // dd($id);
-     $marcas = Marca::all();
+
       $Subgrupos=Subgrupoelemento::all();
-      return view("elementos.crear",compact('id','Subgrupos','marcas'));
+      return view("elementos.crear",compact('id','Subgrupos'));
     }
 
     /**

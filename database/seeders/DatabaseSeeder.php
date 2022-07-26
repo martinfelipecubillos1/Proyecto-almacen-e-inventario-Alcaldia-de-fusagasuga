@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         //fase 1 base de datos
         $this->call(companiaseeder::class);
-        $this->call(cargoseeder::class);
         $this->call(dependenciaseeder::class);
         $this->call(responsableseeder::class);
         $this->call(colorseeder::class);
@@ -25,7 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(tipodonacionseederphp::class);
         $this->call(grupoelementoseeder::class);
         $this->call(subgrupoelementoseeder::class);
-        $this->call(marcaseeder::class);
         $this->call(elementoseeder::class);
         $this->call(movimientoseeder::class);
         $this->call(estadoseeder::class);

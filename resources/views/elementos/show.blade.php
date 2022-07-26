@@ -38,7 +38,7 @@
                                 <td style="display: none;">{{ $Elemento->id }}</td>
                                 <td>{{ $Elemento->idg}}{{ $Elemento->codigosubgrupo}}{{ $Elemento->id}}</td>
                                 <td>{{ $Elemento->nombreelemento }}</td>
-                                <td>{{ $Elemento->nombremarca }}</td>
+                                <td>{{ $Elemento->marca }}</td>
                                 <td>{{ $Elemento->descripcion }}</td>
                                 <td>
 

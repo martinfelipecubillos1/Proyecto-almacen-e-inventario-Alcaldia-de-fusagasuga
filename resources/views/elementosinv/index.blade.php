@@ -9,11 +9,11 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <form action="{{route('elementosinv.index')}}" method="get">
+                    <form action="{{ route('elementosinv.index') }}" method="get">
 
                         <div class="from-row">
                             <div class="col-ms-4">
-                                <input type="text" class="form-control" name="texto" value="{{$texto}}">
+                                <input type="text" class="form-control" name="texto" value="{{ $texto }}">
                             </div>
                             <div class="col-auto">
                                 <input type="submit" class="btn btn-primary" value="Buscar">
@@ -26,11 +26,6 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
-
-
-
-
 
                             @can('crear-Usuario')
                                 <a class="form-control btn btn-success" href="crearelementoinv">Nuevo</a>
@@ -51,6 +46,7 @@
                                     <th style="color:#fff;">Precio unitario</th>
                                     <th style="color:#fff;">Precio Total</th>
                                     <th style="color:#fff;">Fecha Creacion</th>
+                                    <th style="color:#fff;">Codigo QR</th>
                                     @can('editar-Usuario')
                                         <th style="color:#fff;">acciones</th>
                                     @endcan
@@ -71,22 +67,39 @@
                                             <td>{{ $elementoinventario->preciounitario }}</td>
                                             <td>{{ $elementoinventario->preciototal }}</td>
                                             <td>{{ $elementoinventario->created_at }}</td>
+
                                             <td>
-                                                <form id="eliminar" class="eliminar" action="{{ route('elementosinv.destroy', $elementoinventario->id) }}"
+
+                                                {{$miQr = QrCode::
+                                                size(100) //defino el tamaño
+                                                ->backgroundColor(250, 240, 215) //defino el fondo
+                                                ->color(0, 0, 0)
+                                                ->margin(1) //defino el margen
+                                                ->generate($elementoinventario->id)}}
+
+
+
+                                            </td>
+
+
+                                            <td>
+                                                <form id="eliminar" class="eliminar"
+                                                    action="{{ route('elementosinv.destroy', $elementoinventario->id) }}"
                                                     method="POST">
 
 
 
-                                                    @if( $elementoinventario->consumible == "si")
-                                                    @can('editar-Usuario')
-                                                        <a class="btn btn-info"
-                                                            href="{{ route('elementosinv.edit', $elementoinventario->id) }}">Añadir</a>
-                                                    @endcan
+                                                    @if ($elementoinventario->consumible == 'si')
+                                                        @can('editar-Usuario')
+                                                            <a class="btn btn-info"
+                                                                href="{{ route('elementosinv.edit', $elementoinventario->id) }}">Añadir</a>
+                                                        @endcan
                                                     @endif
                                                     @csrf
                                                     @method('DELETE')
                                                     @can('borrar-rol')
-                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Está seguro que desea eliminar este registro?')" >Borrar</button>
+                                                        <button type="submit" class="btn btn-danger"
+                                                            onclick="return confirm('¿Está seguro que desea eliminar este registro?')">Borrar</button>
                                                     @endcan
 
 
@@ -112,8 +125,4 @@
             </div>
         </div>
     </section>
-
-
-
-
 @endsection

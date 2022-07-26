@@ -17,10 +17,9 @@ class Elementos extends Migration
             $table->id();
             $table->String('nombreelemento');
             $table->unsignedBigInteger('codigosubgrupo');
-            $table->unsignedBigInteger('marca');
+            $table->String('marca')->nullable();
             $table->longText('descripcion');
             $table->foreign('codigosubgrupo')->references('id')->on('subgrupoelementos');
-            $table->foreign('marca')->references('id')->on('marcas');
             $table->timestamps();
         });
     }

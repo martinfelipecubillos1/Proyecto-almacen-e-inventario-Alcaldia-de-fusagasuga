@@ -31,7 +31,7 @@
                                 <td style="display: none;">{{ $responsable->id }}</td>
                                 <td>{{ $responsable->cedula }}</td>
                                 <td>{{ $responsable->nombre }}</td>
-                                <td>{{ $responsable->nombrecargo }}</td>
+                                <td>{{ $responsable->cargo }}</td>
                                 <td>{{ $responsable->correo }}</td>
                                 <td>{{ $responsable->numero }}</td>
                                 <td>

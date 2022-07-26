@@ -77,7 +77,7 @@
                                         <tr>
                                             <td style="display: none;">{{ $responsablespordependencia->id }}</td>
                                             <td>{{ $responsablespordependencia->nombre }}</td>
-                                            <td>{{ $responsablespordependencia->nombrecargo }}</td>
+                                            <td>{{ $responsablespordependencia->cargo }}</td>
                                             <td>{{ $responsablespordependencia->nombredependencia }}</td>
                                             <td>
                                                 @if ($responsablespordependencia->jefe == '')
@@ -149,7 +149,7 @@
                                             <tr>
                                                 <td style="display: none;">{{ $responsablespordependencia->id }}</td>
                                                 <td>{{ $responsablespordependencia->nombre }}</td>
-                                                <td>{{ $responsablespordependencia->nombrecargo }}</td>
+                                                <td>{{ $responsablespordependencia->cargo }}</td>
                                                 <td>{{ $responsablespordependencia->nombredependencia }}</td>
                                                 <td>
                                                     @if ($responsablespordependencia->jefe == '')

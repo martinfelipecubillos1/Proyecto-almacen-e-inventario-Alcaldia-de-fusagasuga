@@ -17,8 +17,7 @@ class ResponsableController extends Controller
     public function index()
     {
         $responsables = DB::table('responsables')
-            ->join('cargos', 'cargos.id', '=', 'responsables.cargo')
-            ->select('responsables.*', 'cargos.nombrecargo',)
+            ->select('responsables.*')
             ->get();
 
         return view('responsables.index', compact('responsables'));

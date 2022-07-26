@@ -11,6 +11,21 @@
                     <div class="card">
                         <div class="card-body">
 
+
+                            @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+                            @endif
+
+                            @if ($message = Session::get('error'))
+                            <div class="alert alert-danger alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>
+                                <strong>{{ $message }}</strong>
+                            </div>
+                            @endif
+
                             @if ($errors->any())
                                 <div class="alert alert-dark alert-dismissible fade show" role="alert">
                                     <strong>¡Revise los campos!</strong>
@@ -45,13 +60,8 @@
 
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="contenido">marcas</label>
-                                            <select class="form-control" name="marca" id="marca">
-                                                <option value=""> Seleccione.</option>
-                                                @foreach ($marcas as $marca)
-                                                    <option value="{{$marca->id}}">{{$marca->nombremarca}} </option>
-                                                @endforeach
-                                            </select>
+                                            <label for="contenido">marca</label>
+                                                <input type="text" name="marca" id="marca" class="form-control">
                                         </div>
                                     </div>
 
@@ -67,7 +77,7 @@
                                     </div>
 
                         <br>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary" onclick="return confirm('¿Está seguro que desea Guardar este Elemento?')">Guardar</button>
 
                 </form>
             </div>

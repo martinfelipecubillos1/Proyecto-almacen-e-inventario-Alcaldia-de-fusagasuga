@@ -34,10 +34,9 @@ class ResponsablespordependenciaController extends Controller
         $responsablespordependencias = DB::table('responsablespordependencias')
             ->join('responsables', 'responsables.id', '=', 'responsablespordependencias.responsable')
             ->join('dependencias', 'dependencias.id', '=', 'responsablespordependencias.dependencia')
-            ->join('cargos', 'cargos.id', '=', 'responsables.cargo')
             ->where('dependencia', 'LIKE', '%'.$texto.'%')
         ->orderBy('id','asc')
-            ->select('responsablespordependencias.*', 'responsables.nombre', 'cargos.nombrecargo', 'dependencias.nombredependencia')
+            ->select('responsablespordependencias.*', 'responsables.nombre','responsables.cargo', 'dependencias.nombredependencia')
             ->get();
         //  dd($responsablespordependencias);
 

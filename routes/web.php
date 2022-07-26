@@ -67,7 +67,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('subgrupos', SubgrupoelementoController::class);
     Route::resource('contratos', ContratoController::class);
     Route::resource('contactosproveedor', ContactoproveedorController::class);
-
     Route::get('movi', Movi::class);
     Route::get('crearcontratos', Crearcontratos::class);
     Route::get('crearproveedores', Crearproveedores::class);

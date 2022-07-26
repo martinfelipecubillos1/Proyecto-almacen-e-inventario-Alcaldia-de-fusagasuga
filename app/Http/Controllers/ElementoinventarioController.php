@@ -118,11 +118,11 @@ if($consu){
         $elementoinvs = Elementoinventario::all();
         foreach ($elementoinvs as $elementoinv) {
 
-            if ($request->placainterna == $elementoinv->placaexterna)
+           /*  if ($request->placainterna == $elementoinv->placaexterna)
                 $isPresent = true;
 
             if ($request->placaexterna == $elementoinv->placainterna)
-                $isPresent = true;
+                $isPresent = true; */
         }
 
 

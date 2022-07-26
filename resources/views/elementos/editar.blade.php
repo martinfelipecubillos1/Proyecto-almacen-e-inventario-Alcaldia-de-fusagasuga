@@ -42,22 +42,8 @@
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <label for="contenido">marcas</label>
-                                        <select class="form-control" name="marca" id="marca">
-                                            @foreach ($marcas as $marca)
-                                                @if ($marca->id == $elemento->marca)
-                                                    <option value="{{ $marca->id }}">{{ $marca->nombremarca }}
-                                                    </option>
-                                                @endif
-                                            @endforeach
-                                            @foreach ($marcas as $marca)
-                                                @if ($marca->id == $elemento->marca)
-                                                @else
-                                                    <option value="{{ $marca->id }}"> {{ $marca->nombremarca }}
-                                                    </option>
-                                                @endif>
-                                            @endforeach
-                                        </select>
+                                        <label for="contenido">marca</label>
+                                        {!! Form::text('marca', null, ['class' => 'form-control']) !!}
                                     </div>
                                 </div>
 

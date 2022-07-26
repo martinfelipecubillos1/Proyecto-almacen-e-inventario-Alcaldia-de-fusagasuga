@@ -81,7 +81,7 @@ class MovimientoController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-         //  'codigomarca' => 'required|unique:marcas',
+
            'nombremovimiento' =>'required',
 
             ]);

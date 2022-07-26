@@ -6,6 +6,7 @@ use App\Models\Elemento;
 use App\Models\Grupoelemento;
 use App\Models\Marca;
 use App\Models\Subgrupoelemento;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,6 +31,8 @@ class ElementoController extends Controller
 
 
 
+
+
         return view('elementos.index', compact('Grupos', 'Elementos'));
     }
 
@@ -49,7 +52,7 @@ class ElementoController extends Controller
         if (request('nombreelemento'))
             Elemento::create($request->all());
 
-      return back()->withInput();
+            return back()->with('success','Item created successfully!');
     }
 
     public function show($id)
@@ -59,10 +62,9 @@ class ElementoController extends Controller
 
         $Elementos = DB::table('elementos')
             ->join('subgrupoelementos', 'subgrupoelementos.id', '=', 'elementos.codigosubgrupo')
-            ->join('marcas', 'marcas.id', '=', 'elementos.marca')
             ->join('grupoelementos', 'grupoelementos.id', '=', 'subgrupoelementos.codigogrupo')
             ->where('subgrupoelementos.id', '=', $id)
-            ->select('elementos.*', 'subgrupoelementos.nombresubgrupo', 'grupoelementos.nombregrupo', 'grupoelementos.id as idg', 'marcas.nombremarca')
+            ->select('elementos.*', 'subgrupoelementos.nombresubgrupo', 'grupoelementos.nombregrupo', 'grupoelementos.id as idg')
             ->paginate(10);
 
 
@@ -73,9 +75,8 @@ class ElementoController extends Controller
 
     public function edit($id)
     {
-        $marcas = Marca::all();
         $elemento = Elemento::find($id);
-        return view('elementos.editar', compact('elemento', 'marcas'));
+        return view('elementos.editar', compact('elemento',));
     }
 
     public function update(Request $request, $id)
