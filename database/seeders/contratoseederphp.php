@@ -29,7 +29,7 @@ class contratoseederphp extends Seeder
                 'plazoentrega' => "asdkjab skjkasaw awefdsaew",
                 'otrascondiciones' => "asdkjab skjkasaw awefdsaew",
                 'pdf' => "16153564b7e05c35c699dd434393a746.pdf",
-                'finalizado' => "",
+                'finalizado' => 0,
                 ],
 
                 [
@@ -45,7 +45,7 @@ class contratoseederphp extends Seeder
                     'plazoentrega' => "asdkjab skjkasaw awefdsaew",
                     'otrascondiciones' => "asdkjab skjkasaw awefdsaew",
                     'pdf' => "16153564b7e05c35c699dd434393a746.pdf",
-                    'finalizado' => "",
+                    'finalizado' => 0,
                 ],
                 [
                     'numero' => 12966,
@@ -60,7 +60,7 @@ class contratoseederphp extends Seeder
                     'plazoentrega' => "asdkjab skjkasaw awefdsaew",
                     'otrascondiciones' => "asdkjab skjkasaw awefdsaew",
                     'pdf' => "16153564b7e05c35c699dd434393a746.pdf",
-                    'finalizado' => "si",
+                    'finalizado' => 1,
                 ],
 
 

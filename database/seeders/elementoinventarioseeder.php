@@ -25,11 +25,13 @@ class elementoinventarioseeder extends Seeder
             'preciototal' => 161218,
             'contrato' => 1,
             'estado' => 1,
+            'observaciones' => "el elemento ingresa en perfecto estado",
+            'responsable' => 1,
             'cantidad' => 1,
             'cantidadtotal' => 1,
-            'asignado' => "",
-            'consumible' => "",
-            'baja' => "",],
+            'asignado' => 1,
+            'consumible' => 0,
+            'baja' => 0,],
 
 
             [  'elemento' => 1,
@@ -40,11 +42,13 @@ class elementoinventarioseeder extends Seeder
             'preciototal' => 161218,
             'contrato' => 1,
             'estado' => 1,
+            'observaciones' => "el elemento ingresa en perfecto estado",
+            'responsable' => 1,
             'cantidad' => 1,
             'cantidadtotal' => 1,
-            'asignado' => "si",
-            'consumible' => "",
-            'baja' => "",],
+            'asignado' => 1,
+            'consumible' => 0,
+            'baja' => 0,],
 
             ['elemento' => 3,
             'placainterna' => 10004,
@@ -54,11 +58,13 @@ class elementoinventarioseeder extends Seeder
             'preciototal' => 161218,
             'contrato' => 2,
             'estado' => 1,
+            'observaciones' => "el elemento ingresa en perfecto estado",
+            'responsable' => 1,
             'cantidad' => 50,
             'cantidadtotal' => 50,
-            'asignado' => "",
-            'consumible' => "si",
-            'baja' => "",],
+            'asignado' => 1,
+            'consumible' => 1,
+            'baja' => 0,],
 
             [  'elemento' => 2,
             'placainterna' => 10006,
@@ -68,17 +74,16 @@ class elementoinventarioseeder extends Seeder
             'preciototal' => 161218,
             'contrato' => 2,
             'estado' => 1,
+            'observaciones' => "el elemento ingresa en perfecto estado",
+            'responsable' => 1,
             'cantidad' => 1,
             'cantidadtotal' => 1,
-            'asignado' => "",
-            'consumible' => "",
-            'baja' => "",],
+            'asignado' => 1,
+            'consumible' => 0,
+            'baja' => 0,],
 
         ];
         DB::table('elementoinventarios')->insert($elementoinv);
-
-
-
 
 
 

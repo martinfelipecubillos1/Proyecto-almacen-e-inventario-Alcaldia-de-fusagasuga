@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\cargo;
 use App\Models\Responsable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -49,6 +48,9 @@ class ResponsableController extends Controller
             'correo' => 'required|unique:responsables',
             'numero' => 'required',
         ]);
+        $request->merge(['activo'=>false]);
+
+      //  dd($request);
 
         Responsable::create($request->all());
 
@@ -75,8 +77,7 @@ class ResponsableController extends Controller
     public function edit($id)
     {
         $responsable = Responsable::find($id);
-        $cargos = cargo::all();
-        return view('responsables.editar', compact('cargos', 'responsable'));
+        return view('responsables.editar', compact('responsable'));
     }
 
     /**

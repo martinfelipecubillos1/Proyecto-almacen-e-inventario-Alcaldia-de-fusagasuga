@@ -1,7 +1,7 @@
 <div>
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Añadir Elemento al inventario</h3>
+            <h3 class="page__heading">Crear Elemento a inventario</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -83,7 +83,7 @@
 
                                     <div class="col-sm-12 ">
                                         <div class="form-group">
-                                            <input wire:model="selectedconsumible" class="form-check-input" type="checkbox" value="si"
+                                            <input wire:model="selectedconsumible" class="form-check-input" type="checkbox" value=true
                                                 name="consumible"> ¿Es consumile?
                                         </div>
                                     </div>
@@ -94,7 +94,7 @@
                                             <select class="form-control" name="contrato" id="contrato">
                                                 <option value=""> Seleccione.</option>
                                                 @foreach ($contratos as $contrato)
-                                                    @if ($contrato->finalizado == 'si')
+                                                    @if ($contrato->finalizado == true)
                                                     @else
                                                         <option value="{{ $contrato->id }}">
                                                             {{ $contrato->numero }},
@@ -115,6 +115,30 @@
                                                 @foreach ($estados as $estado)
                                                     <option value="{{ $estado->id }}">{{ $estado->nombreestado }}
                                                     </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="contenido">Observaciones</label>
+                                            <input class="form-control" type="text" name="observaciones">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="contenido">Empleado</label>
+                                            <select class="form-control" name="responsable" id="responsable">
+                                                <option value=""> Seleccione.</option>
+                                                @foreach ($respondependencias as $respondependencia)
+                                                @if ($respondependencia->activo == true)
+                                                <option value="{{ $respondependencia->id }}">
+                                                    {{ $respondependencia->nombre }}- {{$respondependencia->nombredependencia}}
+                                                                                                        </option>
+                                                @endif
+
                                                 @endforeach
                                             </select>
                                         </div>

@@ -19,6 +19,7 @@ class Movimientoinv extends Model
         'preciototal',
         'tipomovimiento',
         'usuario',
-        'actualiza',];
+        'actualiza',
+        'responsableanterior',];
 }
 

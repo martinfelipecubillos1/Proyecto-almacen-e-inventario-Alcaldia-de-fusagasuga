@@ -31,11 +31,11 @@ class DatabaseSeeder extends Seeder
         $this->call(proveedorseeder::class);
         $this->call(contactoproveedorseeder::class);
         $this->call(contratoseederphp::class);
+        $this->call(responsablespordependenciasseeder::class);
         $this->call(elementoinventarioseeder::class);
 
         $this->call(SeederTablaPermisos::class);
         $this->call(SuperAdminseeder::class);
-        $this->call(responsablespordependenciasseeder::class);
         $this->call(movimientoinvseeder::class);
     }
 }

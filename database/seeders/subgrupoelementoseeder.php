@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+
 class subgrupoelementoseeder extends Seeder
 {
     /**
@@ -15,22 +16,70 @@ class subgrupoelementoseeder extends Seeder
     {
         $subgrupo =  [
             [
-                'id' => '1',
                 'nombresubgrupo' => 'mesas',
-                'codigogrupo' => '123',
+                'codigogrupo' => '1',
                 'color' => 'FF5370',
             ],
 
             [
-                'id' => '2',
                 'nombresubgrupo' => 'sillas',
-                'codigogrupo' => '123',
+                'codigogrupo' => '1',
+                'color' => 'FF5370',
+            ],
+
+            [
+                'nombresubgrupo' => 'organizadores',
+                'codigogrupo' => '1',
+                'color' => 'FF5370',
+            ],
+
+            [
+                'nombresubgrupo' => 'archivadores',
+                'codigogrupo' => '1',
+                'color' => 'FF5370',
+            ],
+
+            [
+                'nombresubgrupo' => 'camarotes',
+                'codigogrupo' => '1',
+                'color' => 'FF5370',
+            ],
+
+            [
+                'nombresubgrupo' => 'repisas',
+                'codigogrupo' => '1',
+                'color' => 'FF5370',
+            ],
+
+            [
+                'nombresubgrupo' => 'armarios',
+                'codigogrupo' => '1',
+                'color' => 'FF5370',
+            ],
+
+            [
+                'nombresubgrupo' => 'computadores',
+                'codigogrupo' => '2',
                 'color' => 'FF5370',
             ],
             [
-                'id' => '3',
-                'nombresubgrupo' => 'portatiles',
-                'codigogrupo' => '124',
+                'nombresubgrupo' => 'televisores',
+                'codigogrupo' => '2',
+                'color' => 'FF5370',
+            ],
+            [
+                'nombresubgrupo' => 'cables',
+                'codigogrupo' => '2',
+                'color' => 'FF5370',
+            ],
+            [
+                'nombresubgrupo' => 'tablets',
+                'codigogrupo' => '2',
+                'color' => 'FF5370',
+            ],
+            [
+                'nombresubgrupo' => 'ventiladores',
+                'codigogrupo' => '2',
                 'color' => 'FF5370',
             ],
         ];

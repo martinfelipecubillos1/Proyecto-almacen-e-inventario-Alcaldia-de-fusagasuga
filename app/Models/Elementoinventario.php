@@ -11,7 +11,8 @@ class Elementoinventario extends Model
 
     protected $fillable = ['id',
     'elemento',
-    'placainterna','placaexterna','serial','preciounitario','cantidad','cantidadtotal','preciototal','contrato','asignado','consumible','estado','baja'];
+    'placainterna','placaexterna','serial','preciounitario','cantidad','cantidadtotal','preciototal','contrato','asignado','consumible','estado','observaciones','responsable','baja'];
 
 }
+
 

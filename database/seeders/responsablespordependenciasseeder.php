@@ -19,17 +19,18 @@ class responsablespordependenciasseeder extends Seeder
                 $responsable =  [
                     [ 'responsable' => 1,
                     'dependencia' => 1,
-                    'jefe' => "",
-                    'activo' => "si",],
+                    'jefe' => 0,
+                    'activo' => 1,],
 
                     [  'responsable' => 2,
                     'dependencia' => 1,
-                    'jefe' => "",
-                    'activo' => "",],
+                    'jefe' => 0,
+                    'activo' => 0,],
+
                     [ 'responsable' => 3,
                     'dependencia' => 1,
-                    'jefe' => "",
-                    'activo' => "si",],
+                    'jefe' => 0,
+                    'activo' => 1,],
 
 
                 ];

@@ -17,8 +17,8 @@ class Responsablespordependencias extends Migration
             $table->id();
             $table->unsignedBigInteger('responsable');
             $table->unsignedBigInteger('dependencia');
-            $table->string('jefe');
-            $table->string('activo');
+            $table->boolean('jefe');
+            $table->boolean('activo');
             $table->foreign('dependencia')->references('id')->on('dependencias');
             $table->foreign('responsable')->references('id')->on('responsables');
             $table->timestamps();

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compania;
-use App\Models\cargo;
 use App\Models\Dependencia;
 use App\Models\Responsable;
 use App\Models\responsablespordependencia;
@@ -75,13 +74,17 @@ class ResponsablespordependenciaController extends Controller
             'dependencia' => 'required',
         ]);
         // dd($request->all());
-        $request->merge(['jefe'=>""]);
-        $request->merge(['activo'=>"si"]);
+        $request->merge(['jefe'=>false]);
+        $request->merge(['activo'=>true]);
           //  dd($request->all());
 
-
-
         responsablespordependencia::create($request->all());
+
+        DB::table('responsables')->where('id',$request->responsable)->update(['activo' => true]);
+        //$respon = Update responsable($request->responsable);
+       // $responsable = responsable::find($request->responsable);
+       // $responsable->activo => true;
+
 
         return redirect()->route('responsablespordependencias.index');
     }
@@ -135,11 +138,11 @@ class ResponsablespordependenciaController extends Controller
         ]);
         //dd($request->all());
 if($request->get('jefe') == null){
-$request->merge(['jefe'=>""]);
+$request->merge(['jefe'=>false]);
 }
 
 if($request->get('activo') == null){
-    $request->merge(['activo'=>""]);
+    $request->merge(['activo'=>false]);
     }
 
 
@@ -156,6 +159,9 @@ if($request->get('activo') == null){
      */
     public function destroy($id)
     {
+        $responsablespordependencia = responsablespordependencia::find($id);
+        //dd($responsablespordependencia);
+        DB::table('responsables')->where('id',$responsablespordependencia->responsable)->update(['activo' => false]);
         DB::table('responsablespordependencias')->where('id', $id)->delete();
 
         return redirect()->route('responsablespordependencias.index');

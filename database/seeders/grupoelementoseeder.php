@@ -17,39 +17,44 @@ class grupoelementoseeder extends Seeder
     {
         $grupo =  [
             [
-                'id' => '123',
                 'nombregrupo' => 'Muebles ',
                 'color' => 'FF5370',
             ],
 
             [
-                'id' => '124',
                 'nombregrupo' => 'Electronicos',
-                'color' => 'FF5370',
-            ],
-            [
-                'id' => '135',
-                'nombregrupo' => 'Construcción',
                 'color' => 'FF5370',
             ],
 
             [
-                'id' => '234',
                 'nombregrupo' => 'Papeleria',
                 'color' => 'FF5370',
             ],
 
             [
-                'id' => '456',
-                'nombregrupo' => 'Consumibles',
+                'nombregrupo' => 'Banda',
                 'color' => 'FF5370',
             ],
+
             [
-                'id' => '789',
+                'nombregrupo' => 'Construcción',
+                'color' => 'FF5370',
+            ],
+
+            [
+                'nombregrupo' => 'Varios',
+                'color' => 'FF5370',
+            ],
+
+            [
                 'nombregrupo' => 'Emergencias',
                 'color' => 'FF5370',
             ],
 
+            [
+                'nombregrupo' => 'Construcción',
+                'color' => 'FF5370',
+            ],
 
         ];
         DB::table('grupoelementos')->insert($grupo);

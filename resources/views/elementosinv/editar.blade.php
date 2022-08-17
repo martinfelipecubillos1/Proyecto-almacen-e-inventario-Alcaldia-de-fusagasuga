@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Editar Elemento del inventarios
+            <h3 class="page__heading">Añadir Elemento del inventarios
             </h3>
         </div>
 

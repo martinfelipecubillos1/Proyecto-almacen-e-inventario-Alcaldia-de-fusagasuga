@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ElementoinventariosExport;
 use App\Models\Contrato;
 use App\Models\Donacion;
 use App\Models\Elemento;
@@ -12,6 +13,7 @@ use App\Models\Responsable;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ElementoinventarioController extends Controller
 {
@@ -36,13 +38,15 @@ class ElementoinventarioController extends Controller
             ->join('elementos', 'elementos.id', '=', 'elementoinventarios.elemento')
             ->join('contratos', 'contratos.id', '=', 'elementoinventarios.contrato')
             ->join('estados', 'estados.id', '=', 'elementoinventarios.estado')
+            ->join('responsables', 'responsables.id', '=', 'elementoinventarios.responsable')
             ->join('subgrupoelementos', 'subgrupoelementos.id', '=', 'elementos.codigosubgrupo')
-            ->select('elementoinventarios.*', 'elementos.nombreelemento', 'estados.nombreestado', 'contratos.numero', 'contratos.objetocontractual')
+            ->select('elementoinventarios.*', 'elementos.nombreelemento', 'estados.nombreestado', 'contratos.numero', 'contratos.objetocontractual','responsables.nombre')
             ->where('contratos.numero', 'LIKE', '%' . $texto . '%')
             ->orwhere('placainterna', '=', $texto)
             ->orwhere('placaexterna', '=', $texto)
             ->orwhere('serial', '=', $texto)
             ->orwhere('elementos.nombreelemento', '=', $texto)
+            ->orwhere('responsables.nombre', '=', $texto)
             ->orderBy('id', 'asc')
             ->get();
         //->tosql();
@@ -77,15 +81,16 @@ class ElementoinventarioController extends Controller
        request()->validate([
         'elemento' => 'required',
         'contrato' => 'required',
-        'preciounitario' => 'required',
+        'preciounitario' => 'required|numeric',
         'estado' => 'required',
-        'cantidad' => 'required',
+        'responsable' => 'required',
+        'cantidad' => 'required|numeric',
 ]);
 
  // dd($request->all());
 
 $consu=false;
-        if ($request->consumible == "si") {
+        if ($request->consumible == true) {
 
             $Prueba = DB::table('elementoinventarios')
                 ->select('elementoinventarios.*')
@@ -101,9 +106,9 @@ $consu=false;
             }
         }else{
             request()->validate([
-                'placainterna' => 'required|unique:elementoinventarios',
-                'placaexterna' => 'required|unique:elementoinventarios',
-                'serial' => 'required',
+                'placainterna' => 'required|unique:elementoinventarios|numeric',
+                'placaexterna' => 'required|unique:elementoinventarios|numeric',
+                'serial' => 'required|numeric',
             ]);
         }
 
@@ -135,15 +140,15 @@ if($consu){
         } else {
 
             if ($request->get('asignado') == null) {
-                $request->merge(['asignado' => ""]);
+                $request->merge(['asignado' => true]);
             }
 
             if ($request->get('baja') == null) {
-                $request->merge(['baja' => ""]);
+                $request->merge(['baja' => 0]);
             }
 
             if ($request->get('consumible') == null) {
-                $request->merge(['consumible' => ""]);
+                $request->merge(['consumible' => 0]);
             }
 
 
@@ -167,19 +172,7 @@ if($consu){
      */
     public function show($id)
     {
-
-        //  dd($responsablespordependencias);
-        $elementoinventarios = DB::table('elementoinventarios')
-            ->join('elementos', 'elementos.id', '=', 'elementoinventarios.elemento')
-            ->join('contratos', 'contratos.id', '=', 'elementoinventarios.contrato')
-            ->where('contrato', '=', $id)
-            ->select('elementoinventarios.*', 'elementos.nombreelemento', 'contratos.numero')
-            ->get();
-        // $responsablespordependencias = responsablespordependencia::paginate(5);
-
-        $elementos = Elemento::all();
-
-        return view('elementosinv.show', compact('elementoinventarios', 'elementos'));
+return Excel::download(new ElementoinventariosExport, 'Elementos.xlsx');
     }
 
     /**
@@ -241,4 +234,11 @@ if($consu){
 
         return redirect()->route('elementosinv.index');
     }
+
+
+    public function exportarElementos()
+    {
+        return Excel::download(new ElementoinventariosExport, 'Elementos.xlsx');
+    }
+
 }

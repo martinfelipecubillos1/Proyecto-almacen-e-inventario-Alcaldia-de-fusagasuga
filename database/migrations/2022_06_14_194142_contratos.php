@@ -27,7 +27,7 @@ class Contratos extends Migration
             $table->String('plazoentrega');
             $table->String('otrascondiciones');
             $table->String('pdf');
-            $table->String('finalizado');
+            $table->boolean('finalizado');
 
 
             $table->foreign('proveedor')->references('id')->on('proveedors');

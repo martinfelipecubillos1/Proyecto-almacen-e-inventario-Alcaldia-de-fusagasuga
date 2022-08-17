@@ -23,6 +23,7 @@
                                     <th style="color:#fff;">Cargo</th>
                                     <th style="color:#fff;">Correo</th>
                                     <th style="color:#fff;">Numero</th>
+                                    <th style="color:#fff;">Asignado</th>
                                     <th style="color:#fff;">Acciones</th>
                               </thead>
                               <tbody>
@@ -34,6 +35,13 @@
                                 <td>{{ $responsable->cargo }}</td>
                                 <td>{{ $responsable->correo }}</td>
                                 <td>{{ $responsable->numero }}</td>
+                                <td>
+                                    @if($responsable->activo == true)
+                                    <h6 class="display-8 text-success">Asignado</h6>
+@else
+<h6 class="display-8 text-danger">Sin Asignar</h6>
+@endif
+                                </td>
                                 <td>
 
                                     <form action="{{ route('responsables.destroy',$responsable->id) }}" method="POST">

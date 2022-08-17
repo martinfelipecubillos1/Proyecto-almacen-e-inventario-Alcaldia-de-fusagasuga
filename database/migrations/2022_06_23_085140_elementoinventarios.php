@@ -27,14 +27,17 @@ class Elementoinventarios extends Migration
             $table->string('preciototal');
             $table->unsignedBigInteger('contrato');
             $table->unsignedBigInteger('estado');
+            $table->string('observaciones');
+            $table->unsignedBigInteger('responsable');
 
-            $table->string('asignado');
-            $table->string('consumible');
-            $table->string('baja');
+            $table->boolean('asignado');
+            $table->boolean('consumible');
+            $table->boolean('baja');
 
             $table->foreign('elemento')->references('id')->on('elementos');
             $table->foreign('contrato')->references('id')->on('contratos');
             $table->foreign('estado')->references('id')->on('estados');
+            $table->foreign('responsable')->references('id')->on('responsablespordependencias');
             $table->timestamps();
         });
     }

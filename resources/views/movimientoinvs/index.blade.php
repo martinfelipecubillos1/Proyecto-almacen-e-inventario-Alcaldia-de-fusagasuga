@@ -8,12 +8,9 @@
 
         <div class="from-row">
             <div class="col-ms-4">
-                @can('crear-Usuario')
-                    <a class="btn btn-warning" href="/movi">Nuevo</a>
+                @can('crear-rol')
+                    <a class="btn btn-warning" href="/movi">Nuevo Movimiento</a>
                 @endcan
-
-                <a class="btn btn-info" href="{{ route('movimientoinvs.create') }}">Ver Transpasos</a>
-
 
             </div>
         </div>
@@ -44,12 +41,11 @@
                                     <th style="color:#fff;">placas inter/exter</th>
                                     <th style="color:#fff;">serial/referencia</th>
                                     <th style="color:#fff;">tipomovimiento</th>
+                                    <th style="color:#fff;">Responsable anterior</th>
                                     <th style="color:#fff;">cantidad</th>
-                                    <th style="color:#fff;">Responsable del movimiento</th>
+                                    <th style="color:#fff;">Realizo el movimiento</th>
                                     <th style="color:#fff;">Fecha del movimiento</th>
-                                    <th style="color:#fff;">Actualización del movimiento</th>
-                                    <th style="color:#fff;">Actualiza</th>
-                                    @can('editar-Usuario')
+                                    @can('editar-rol')
                                         <th style="color:#fff;">acciones</th>
                                     @endcan
                                 </thead>
@@ -57,28 +53,20 @@
                                     @foreach ($Movimientoinvs as $Movimientoinv)
                                         <tr>
                                             <td>{{ $Movimientoinv->id }}</td>
-                                            <td>{{ $Movimientoinv->nombre }} -- {{ $Movimientoinv->nombredependencia }}
-                                            </td>
+                                            <td>{{ $Movimientoinv->nnr }} -- {{ $Movimientoinv->nnd }}</td>
                                             <td>{{ $Movimientoinv->nombreelemento }}</td>
-                                            <td> {{ $Movimientoinv->placainterna }} / {{ $Movimientoinv->placaexterna }}
-                                            </td>
+                                            <td> {{ $Movimientoinv->placainterna }} / {{ $Movimientoinv->placaexterna }}</td>
                                             <td> {{ $Movimientoinv->serial }}</td>
                                             <td>{{ $Movimientoinv->nombremovimiento }}</td>
+                                            <td>{{ $Movimientoinv->anr }} -- {{ $Movimientoinv->and }}</td>
                                             <td>{{ $Movimientoinv->cantidad }}</td>
                                             <td>{{ $Movimientoinv->nombreCrea }}</td>
                                             <td>{{ $Movimientoinv->created_at }}</td>
-                                            <td>{{ $Movimientoinv->updated_at }}</td>
-                                            <td>{{ $Movimientoinv->nombreActualiza }}</td>
                                             <td>
                                                 <form action="{{ route('movimientoinvs.destroy', $Movimientoinv->id) }}"
                                                     method="POST">
 
-                                                    @if ($Movimientoinv->tipomovimiento == 1 || $Movimientoinv->tipomovimiento == 4)
-                                                        @can('editar-Usuario')
-                                                            <a class="btn btn-warning"
-                                                                href="{{ route('movimientoinvs.edit', $Movimientoinv->id) }}">Transpaso/Salida</a>
-                                                        @endcan
-                                                    @endif
+
 
                                                     @csrf
                                                     @method('DELETE')

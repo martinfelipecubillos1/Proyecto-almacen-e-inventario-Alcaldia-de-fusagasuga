@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\TryCatch;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 class ContratoController extends Controller
 {
     /**
@@ -26,23 +27,15 @@ class ContratoController extends Controller
         $Contras = DB::table('contratos')
             ->join('proveedors', 'proveedors.id', '=', 'contratos.proveedor')
             ->join('dependencias', 'dependencias.id', '=', 'contratos.dependencia')
-            ->join('tipocontratos', 'tipocontratos.id', '=', 'contratos.tipodecontrato')
+            ->leftjoin('tipocontratos', 'tipocontratos.id', '=', 'contratos.tipodecontrato')
+            ->leftjoin('tipodonacions', 'tipodonacions.id', '=', 'contratos.tipodonacion')
             ->orderBy('finalizado', 'asc')
-            ->select('contratos.*', 'proveedors.nombreproveedor', 'dependencias.nombredependencia', 'tipocontratos.tipodecontrato')
-            ->paginate(5);
-
-
-        $Contras2 = DB::table('contratos')
-            ->join('proveedors', 'proveedors.id', '=', 'contratos.proveedor')
-            ->join('dependencias', 'dependencias.id', '=', 'contratos.dependencia')
-            ->join('tipodonacions', 'tipodonacions.id', '=', 'contratos.tipodonacion')
-            ->orderBy('finalizado', 'asc')
-            ->select('contratos.*', 'proveedors.nombreproveedor', 'dependencias.nombredependencia', 'tipodonacions.tipodedonacion')
+            ->select('contratos.*', 'proveedors.nombreproveedor', 'dependencias.nombredependencia', 'tipocontratos.tipodecontrato','tipodonacions.tipodedonacion')
             ->paginate(5);
 
 
 
-        return view('contratos.index', compact('Contras', 'Contras2'));
+        return view('contratos.index', compact('Contras'));
     }
 
     /**
@@ -128,14 +121,47 @@ class ContratoController extends Controller
                 $cont->plazoentrega = $request->get('plazoentrega');
                 $cont->otrascondiciones = $request->get('otrascondiciones');
 
-                if ($request->hasFile('pdf')) {
+
+
+                if($request->hasFile('pdf')) {
+
+                    //get filename with extension
+                    $filenamewithextension = $request->file('pdf')->getClientOriginalName();
+
+                    //get filename without extension
+                    $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+                    //get file extension
+                    $extension = $request->file('pdf')->getClientOriginalExtension();
+
+                    //filename to store
+                    $filenametostore = $filename.'_'.uniqid().'.'.$extension;
+
+                    //Upload File to external server
+
+                 //   Storage::disk('ftp')->put($filenametostore, fopen($request->file('pdf'), 'r+'));
+
+                                    //Store $filenametostore in the database
+                    $cont->pdf = Storage::disk('local')->putFile('contratos', new File($request->file('pdf')));
+                }
+
+
+
+
+
+
+
+               /* if ($request->hasFile('pdf')) {
                     $archivo = $request->file('pdf');
                     $archivo->move(public_path() . '/Archivos/', $archivo->getClientOriginalName());
                     $cont->pdf = $archivo->getClientOriginalName();
                 }
 
+*/
+
+
                 if ($request->get('finalizado') == null) {
-                    $request->merge(['finalizado' => ""]);
+                    $request->merge(['finalizado' => 0]);
                     $cont->finalizado = $request->get('finalizado');
                 }
 
@@ -165,7 +191,14 @@ class ContratoController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $contrato = Contrato::find($id);
+
+        if (Storage::disk('local')->exists($contrato->pdf)) {
+        return Storage::disk('local')->download($contrato->pdf);
+        }else{
+        return redirect()->back()->with('message', 0);
+        }
     }
 
     /**
@@ -201,7 +234,7 @@ class ContratoController extends Controller
 
 
         if ($request->get('finalizado') == null) {
-            $request->merge(['finalizado' => ""]);
+            $request->merge(['finalizado' =>0]);
         }
 
 

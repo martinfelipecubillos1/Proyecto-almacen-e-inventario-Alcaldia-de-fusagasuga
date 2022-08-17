@@ -15,7 +15,6 @@ use App\Http\Controllers\ElementoController;
 use App\Http\Controllers\ElementoinventarioController;
 use App\Http\Controllers\GrupoelementoController;
 use App\Http\Controllers\ResponsablespordependenciaController;
-use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\MovimientoController;
 use App\Http\Controllers\MovimientoinvController;
 use App\Http\Controllers\SubgrupoelementoController;
@@ -23,6 +22,7 @@ use App\Http\Livewire\Crearcontratos;
 use App\Http\Livewire\Crearelementoinv;
 use App\Http\Livewire\Crearproveedores;
 use App\Http\Livewire\Movi;
+use Illuminate\Support\Facades\Storage as FacadesStorage;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +40,10 @@ Route::get('/', function () {
 });
 
 
+Route::get('/serfpt', function(){
+$files = FacadesStorage::disk('ftp')->allFiles();
+dd($files);
+});
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -47,7 +51,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home2', [App\Http\Controllers\HomeController::class, 'create'])->name('home2');
 
       //y creamos un grupo de rutas protegidas para los controladores}
 Route::group(['middleware' => ['auth']], function() {
@@ -58,7 +61,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('proveedores', ProveedorController::class);
     Route::resource('responsables', ResponsableController::class);
     Route::resource('responsablespordependencias', ResponsablespordependenciaController::class);
-    Route::resource('marcas', MarcaController::class);
     Route::resource('movimientos', MovimientoController::class);
     Route::resource('movimientoinvs', MovimientoinvController::class);
     Route::resource('elementosinv', ElementoinventarioController::class);
@@ -71,4 +73,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('crearcontratos', Crearcontratos::class);
     Route::get('crearproveedores', Crearproveedores::class);
     Route::get('crearelementoinv', Crearelementoinv::class);
+
+    Route::get('/elementosinv/export', [ElementoinventarioController::class, 'exportarElementos'])->name('elementos.export');
 });

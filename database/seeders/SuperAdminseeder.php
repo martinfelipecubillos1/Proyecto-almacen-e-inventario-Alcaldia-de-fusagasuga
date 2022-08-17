@@ -39,9 +39,6 @@ class SuperAdminseeder extends Seeder
 
        $rol = Role::create(['name'=>'Usuario']);
 
-
-
-
        $usuario3 =  [
         ['permission_id' => '5',
         'role_id' => '2',],

@@ -20,12 +20,14 @@ class Movimientoinvs extends Migration
             $table->unsignedBigInteger('tipomovimiento');
             $table->unsignedBigInteger('usuario');
             $table->unsignedBigInteger('actualiza');
+            $table->unsignedBigInteger('responsableanterior');
             $table->string('cantidad');
             $table->string('preciounitario');
             $table->string('preciototal');
 
 
             $table->foreign('responsable')->references('id')->on('responsablespordependencias');
+            $table->foreign('responsableanterior')->references('id')->on('responsablespordependencias');
             $table->foreign('elemento')->references('id')->on('elementoinventarios');
             $table->foreign('tipomovimiento')->references('id')->on('movimientos');
             $table->foreign('usuario')->references('id')->on('users');

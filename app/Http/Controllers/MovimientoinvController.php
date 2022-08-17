@@ -11,7 +11,6 @@ use App\Models\Proveedor;
 use App\Models\Responsable;
 use App\Models\responsablespordependencia;
 use App\Models\Salida;
-use App\Models\Transpaso;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -32,15 +31,27 @@ class MovimientoinvController extends Controller
         $texto = trim($request->get('texto'));
         //consulta de llaves foraneas a la vista
         $Movimientoinvs = DB::table('movimientoinvs')
+
             ->join('responsablespordependencias', 'responsablespordependencias.id', '=', 'movimientoinvs.responsable')
             ->join('responsables', 'responsables.id', '=', 'responsablespordependencias.responsable')
             ->join('dependencias', 'dependencias.id', '=', 'responsablespordependencias.dependencia')
+
+
+
+            ->join('responsablespordependencias as an', 'an.id', '=', 'movimientoinvs.responsableanterior')
+            ->join('responsablespordependencias as nu', 'nu.id', '=', 'movimientoinvs.responsable')
+            ->join('responsables as rnu', 'rnu.id', '=', 'nu.responsable')
+            ->join('responsables as ran', 'ran.id', '=', 'an.responsable')
+            ->join('dependencias as dnu', 'dnu.id', '=', 'nu.dependencia')
+            ->join('dependencias as dan', 'dan.id', '=', 'an.dependencia')
+
+
             ->join('elementoinventarios', 'elementoinventarios.id', '=', 'movimientoinvs.elemento')
             ->join('elementos', 'elementos.id', '=', 'elementoinventarios.elemento')
             ->join('movimientos', 'movimientos.id', '=', 'movimientoinvs.tipomovimiento')
             ->join('users as a', 'a.id', '=', 'movimientoinvs.usuario')
             ->join('users as b', 'b.id', '=', 'movimientoinvs.actualiza')
-            ->select('movimientoinvs.*', 'a.name as nombreCrea', 'b.name as nombreActualiza', 'responsables.nombre','dependencias.nombredependencia' , 'elementos.nombreelemento', 'movimientos.nombremovimiento', 'elementoinventarios.placainterna', 'elementoinventarios.placaexterna', 'elementoinventarios.serial')
+            ->select('movimientoinvs.*', 'a.name as nombreCrea', 'b.name as nombreActualiza', 'ran.nombre as anr', 'dan.nombredependencia as and','rnu.nombre as nnr', 'dnu.nombredependencia as nnd', 'elementos.nombreelemento', 'movimientos.nombremovimiento', 'elementoinventarios.placainterna', 'elementoinventarios.placaexterna', 'elementoinventarios.serial')
             ->where('movimientos.nombremovimiento', 'LIKE', '%' . $texto . '%')
             ->orwhere('elementoinventarios.placainterna', '=', $texto)
             ->orwhere('elementoinventarios.placaexterna', '=', $texto)
@@ -65,22 +76,7 @@ class MovimientoinvController extends Controller
      */
     public function create(Request $request)
     {
-        $texto = trim($request->get('texto'));
-        $transpasos = DB::table('transpasos')
-        ->join('responsablespordependencias as an', 'an.id', '=', 'transpasos.responsableanterior')
-        ->join('responsablespordependencias as nu', 'nu.id', '=', 'transpasos.responsablenuevo')
-        ->join('responsables as rnu', 'rnu.id', '=', 'nu.responsable')
-        ->join('responsables as ran', 'ran.id', '=', 'an.responsable')
-        ->select('transpasos.*', 'rnu.nombre as nuevores','ran.nombre as antiguores')
-        ->where('movimientorelacionado', 'LIKE', '%' . $texto . '%')
-        ->orwhere('rnu.nombre', '=', $texto)
-        ->orwhere('ran.nombre', '=', $texto)
-
-        ->orderby('id','desc')
-        ->paginate(20);
-
-        return view('movimientoinvs.transpaso', compact('texto','transpasos'));
-        //livewire.movi Remplaza el crear
+ //livewire.movi Remplaza el crear
     }
 
     /**
@@ -93,44 +89,20 @@ class MovimientoinvController extends Controller
     {
 
 
-        // dd($request->all());
+        //dd($request->all());
 
         request()->validate([
             'responsable' => 'required|exists:responsables,id',
             'elemento' => 'required',
-            'cantidad' => 'required|integer|min:0',
+            'cantidad' => 'required',
             'usuario' => 'required',
-
+            'estado' => 'required',
+            'observaciones' => 'required',
         ]);
        // dd($request->cantidad, $request->cantidadmaxima);
 
             // dd($elementoinv->consumible);
-
-            $elementoinv = Elementoinventario::find($request->elemento);
-
-
-
-            if ($elementoinv->consumible == "si") {
-
-                if ($request->cantidad > $request->cantidadmaxima) {
-                    request()->validate([
-                        'supera' => 'required'
-                    ]);
-                }
-
-                $request->merge(['tipomovimiento' => 2]);
-
-                $Nuevacantidad = $elementoinv->cantidad - $request->cantidad;
-
-                Elementoinventario::where('id', $request->elemento)
-                    ->update(['cantidad' => $Nuevacantidad]);
-            } else{
-                Elementoinventario::where('id', $request->elemento)
-                    ->update(['asignado' => 'si']);
-
-                    $request->merge(['tipomovimiento' => 1]);
-            }
-
+           $elementoinv = Elementoinventario::find($request->elemento);
 
 
 //dd($elementoinv->preciounitario);
@@ -145,6 +117,17 @@ class MovimientoinvController extends Controller
             'preciounitario' => $elementoinv->preciounitario,
             'preciototal' => $elementoinv->preciounitario * $request->input('cantidad'),
         ]);
+
+if($request->tipomovimiento == 4){
+        DB::table('elementoinventarios')
+        ->where('id',$request->elemento)
+        ->update(['responsable' => $request->responsable,'estado'=>$request->estado,'observaciones'=>$request->observaciones ]);
+}else{
+    DB::table('elementoinventarios')
+    ->where('id',$request->elemento)
+    ->update(['responsable' => $request->responsable,'estado'=>$request->estado,'observaciones'=>$request->observaciones, 'baja'=>true ]);
+}
+
 
     return redirect()->route('movimientoinvs.index');
 
@@ -176,7 +159,7 @@ class MovimientoinvController extends Controller
         $respondependencias = DB::table('responsablespordependencias')
         ->join('responsables', 'responsables.id', '=', 'responsablespordependencias.responsable')
         ->join('dependencias', 'dependencias.id', '=', 'responsablespordependencias.dependencia')
-        ->where('activo', '=', 'si')
+        ->where('responsablespordependencias.activo', '=', 'true')
         ->select('responsablespordependencias.*', 'responsables.nombre','dependencias.nombredependencia')
         ->get();
 
@@ -244,13 +227,6 @@ $movimientoinv = DB::table('movimientoinvs')
 
 
 
-        Transpaso::create([
-            'movimientorelacionado' => $id,
-            'responsableanterior' => $movimientoinv->responsable,
-            'responsablenuevo' => $request->input('responsablenuevo'),
-            'actualiza' => Auth::user()->id,
-        ]);
-
         Movimientoinv::create([
             'responsable' => $request->input('responsablenuevo'),
             'elemento' =>$movimientoinv->elemento,
@@ -284,18 +260,13 @@ $moviactualiza = Movimientoinv::find($id);
 
         //dd($movimientoinv->elemento,$request->estado);
 
-        Transpaso::create([
-            'movimientorelacionado' => $id,
-            'responsableanterior' => $movimientoinv->responsable,
-            'responsablenuevo' => $request->input('responsablenuevo'),
-            'actualiza' => Auth::user()->id,
-        ]);
+
 
 
         $elementoactualiza = Elementoinventario::find($movimientoinv->elemento);
         $elementoactualiza->estado = $request->estado;
         //$elementoactualiza->asignado = "";
-        $elementoactualiza->baja = "si";
+        $elementoactualiza->baja = 1;
         $elementoactualiza->save();
 
         Movimientoinv::create([

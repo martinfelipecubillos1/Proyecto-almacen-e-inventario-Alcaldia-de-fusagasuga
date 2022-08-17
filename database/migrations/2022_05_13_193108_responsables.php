@@ -20,6 +20,7 @@ class Responsables extends Migration
             $table->String('cargo');
             $table->String('correo')->unique();
             $table->String('numero');
+            $table->boolean('activo');
             $table->timestamps();
         });
     }

@@ -11,5 +11,5 @@ class Responsable extends Model
 
     protected $table = 'responsables';
 
-    protected $fillable = ['id','cedula', 'nombre', 'cargo', 'correo','numero'];
+    protected $fillable = ['id','cedula', 'nombre', 'cargo', 'correo','numero','activo'];
 }

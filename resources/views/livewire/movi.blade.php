@@ -3,7 +3,7 @@
     {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Asignar Elemento de inventario</h3>
+            <h3 class="page__heading">Reasignar Elemento de inventario</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -32,22 +32,6 @@
                                 <div class="row">
 
 
-
-
-
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <div class="form-group">
-                                            <label for="contenido">Empleado</label>
-                                            <select class="form-control" name="responsable" id="responsable">
-                                                <option value=""> Seleccione.</option>
-                                                @foreach ($respondependencias as $respondependencia)
-                                                    <option value="{{ $respondependencia->id }}">
-                                                        {{ $respondependencia->nombre }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
 
 
                                     <div class="col-sm-3 ">
@@ -98,6 +82,22 @@
                                     @endif
 
                                     @if ($selectedElemento)
+
+                                    <div class="col-sm-3 ">
+                                        <div class="form-group">
+                                            <label for="contenido">Empleado</label>
+                                            <select wire:model="selectedresponsable" class="form-control">
+                                                <option value=""> Seleccione.</option>
+                                                @foreach ($respondependencias as $respondependencia)
+                                                    <option value="{{ $respondependencia->id }}">
+                                                        {{ $respondependencia->nombre }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <label for="contenido">Elemento</label>
@@ -106,9 +106,11 @@
                                                     <option value=""> Seleccione.</option>
                                                     @foreach ($elemetarios as $elemetario)
                                                         <option value="{{ $elemetario->id }}">
-                                                            {{ $elemetario->nombreelemento }}, Placa interna
-                                                            {{ $elemetario->placainterna }} Placa externa
-                                                            {{ $elemetario->placaexterna }} {{ $elemetario->des }}
+                                                            Nombre: {{ $elemetario->nombreelemento }}//
+                                                            Responsable: {{ $elemetario->nombre }}//
+                                                            Placa interna{{ $elemetario->placainterna }}//
+                                                            Placa externa{{ $elemetario->placaexterna }}
+
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -120,35 +122,71 @@
 
                                     @if ($eleinv)
 
-                                        @if ($eleinv->consumible == 'si')
+
                                             <div class="col-sm-3 ">
                                                 <div class="form-group">
                                                     <label for="titulo">Cantidad</label>
-                                                    <input type="text" name="cantidad" class="form-control"
-                                                        value={{ $eleinv->cantidad }}>
+                                                    <input class="form-control" readonly='readonly' name="cantidad" id="estado" value={{ $eleinv->cantidad }}>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="contenido">Reasignar a:</label>
+                                                    <select class="form-control" name="responsable" id="responsable">
+                                                        <option value=""> Seleccione.</option>
+                                                        @foreach ($respondependencias as $respondependencia)
+                                                        @if ($selectedresponsable == $respondependencia->id )
+
+                                                        @else
+                                                        <option value="{{ $respondependencia->id }}">
+                                                            {{ $respondependencia->nombre }}
+                                                        </option>
+                                                        @endif
+
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-3 ">
                                                 <div class="form-group">
-                                                    <label for="titulo">Cantidad Maxima disponible:</label>
-                                                    <label> {{ $eleinv->cantidad }} </label>
-                                                    <input name="cantidadmaxima"  id="cantidadmaxima"
-                                                        value={{ $eleinv->cantidad}}>
+                                                    <label for="titulo">Estado del elemento</label>
+                                                    <select class="form-control" name="estado" id="estado">
+                                                        <option value="">Seleccione.
+                                                        </option>
+                                                        @foreach ( $estados as $estado )
+                                                        <option value={{$estado->id}} > {{$estado->nombreestado}}
+                                                        </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
-                                        @else
+
+                                            <div class="col-sm-9 ">
+                                                <div class="form-group">
+                                                    <label for="titulo">Observaciones</label>
+                                                    <textarea class="form-control" name="observaciones" id="observaciones"> {{$eleinv->observaciones}}
+                                                    </textarea>
+                                                </div>
+                                            </div>
+
                                             <div class="col-sm-3 ">
                                                 <div class="form-group">
-                                                    <label for="titulo">Cantidad</label>
-                                                    <select class="form-control" name="cantidad" id="estado">
-                                                        <option value="{{ $eleinv->cantidad }}">
-                                                            {{ $eleinv->cantidad }}
+                                                    <label for="titulo">Movimiento</label>
+                                                    <select class="form-control" name="tipomovimiento" id="tipomovimiento">
+                                                        <option value="">Seleccione.
+                                                        </option>
+
+                                                        <option value=4 >Traspaso
+                                                        </option>
+                                                        <option value=5 > Salida
                                                         </option>
                                                     </select>
                                                 </div>
                                             </div>
-                                        @endif
+
 
                                     @endif
 

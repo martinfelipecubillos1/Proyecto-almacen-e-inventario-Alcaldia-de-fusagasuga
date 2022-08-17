@@ -48,7 +48,7 @@
                                     <select class="form-control" name="contrato" id="contrato">
                                         <option value=""> Contratos</option>
                                         @foreach ($contratos as $contrato)
-                                        @if ($contrato->finalizado =="si")
+                                        @if ($contrato->finalizado ==true)
                                             @else
                                         <option value="{{$contrato->id}}">{{$contrato->id}} </option>
                                         @endif

@@ -22,7 +22,7 @@ class Transpasos extends Migration
             $table->unsignedBigInteger('actualiza');
 
 
-            $table->foreign('movimientorelacionado')->references('id')->on('movimientoinvs');
+            $table->foreign('movimientorelacionado')->references('id')->on('elementoinventarios');
             $table->foreign('responsablenuevo')->references('id')->on('responsablespordependencias');
 
             $table->foreign('responsableanterior')->references('id')->on('responsablespordependencias');

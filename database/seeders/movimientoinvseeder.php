@@ -21,6 +21,7 @@ class movimientoinvseeder extends Seeder
                 'usuario' => 1,
                 'actualiza' => 1,
                 'cantidad' => 1,
+                'responsableanterior' => 2,
                 'preciounitario' => 123,
                 'preciototal' => 123,
             ]);

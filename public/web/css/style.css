@@ -4138,8 +4138,9 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 
 /* NUEVO PARA ESTE PROYECTO */
 .order-card {
-    color: #fff;
+    color: rgb(255, 255, 255);
 }
+
 .bg-c-blue {
     background: linear-gradient(45deg,#73b4ff, #4099ff);
 }
@@ -4160,6 +4161,9 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 }
 .bg-c-gray {
     background: linear-gradient(45deg,#706d69, #9c9b97);
+}
+.bg-c-purple {
+    background: linear-gradient(45deg,#871fb8, #82168b);
 }
 
 .card {

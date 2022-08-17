@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\DB;
 class Movi extends Component
 {
 
-    public $selectedGrupo, $selectedSubgrupo = null, $selectedElemento = null, $selectedElementoinv = null;
+    public $selectedGrupo, $selectedSubgrupo = null, $selectedElemento = null, $selectedElementoinv = null,$selectedresponsable = null;
     public $Subgrupos=null , $Elementos = null, $eleinv = null;
 
     public function render()
@@ -30,17 +30,9 @@ class Movi extends Component
 
         $respondependencias = DB::table('responsablespordependencias')
         ->join('responsables', 'responsables.id', '=', 'responsablespordependencias.responsable')
-        ->where('activo', '=', 'si')
-        ->select('responsablespordependencias.*', 'responsables.nombre')
+        ->join('dependencias', 'dependencias.id', '=', 'responsablespordependencias.dependencia')
+        ->select('responsablespordependencias.*', 'responsables.nombre','dependencias.nombredependencia')
         ->get();
-
-        $elemetarios = DB::table('elementoinventarios')
-        ->join('elementos', 'elementos.id', '=', 'elementoinventarios.elemento')
-        ->where('asignado', '=', '')
-        ->where('elemento','LIKE','%'.$this->selectedElemento.'%')
-        ->select('elementoinventarios.*', 'elementos.nombreelemento','elementos.descripcion as des')
-        ->get();
-
 
         $responsablespordependencias = responsablespordependencia::all();
         $movimientos = Movimiento::all();
@@ -54,7 +46,22 @@ class Movi extends Component
 
         $this->eleinv = Elementoinventario::find($this->selectedElementoinv);
 
-        return view('livewire.movi', compact('elemetarios','respondependencias','responsablespordependencias','movimientos','users','responsables'),[
+        $elemetarios = DB::table('elementoinventarios')
+        ->join('elementos', 'elementos.id', '=', 'elementoinventarios.elemento')
+        ->join('contratos', 'contratos.id', '=', 'elementoinventarios.contrato')
+        ->join('estados', 'estados.id', '=', 'elementoinventarios.estado')
+        ->join('responsables', 'responsables.id', '=', 'elementoinventarios.responsable')
+        ->join('subgrupoelementos', 'subgrupoelementos.id', '=', 'elementos.codigosubgrupo')
+        ->where('consumible', '=', false)
+        ->where('elementoinventarios.elemento','LIKE','%'.$this->selectedElemento.'%')
+        ->select('elementoinventarios.*', 'elementos.nombreelemento','elementos.descripcion as des', 'estados.nombreestado', 'contratos.numero', 'contratos.objetocontractual','responsables.nombre')
+        ->where('elementoinventarios.responsable','LIKE','%'.$this->selectedresponsable.'%')
+        ->get();
+
+
+        $estados = Estado::all();
+
+        return view('livewire.movi', compact('elemetarios','estados','respondependencias','responsablespordependencias','movimientos','users','responsables'),[
     'grupos' => Grupoelemento::all()
         ])
         ->extends('layouts.app')

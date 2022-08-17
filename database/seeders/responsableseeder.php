@@ -19,21 +19,22 @@ class responsableseeder extends Seeder
             'nombre'=> 'martin felipe',
             'correo'=> 'martim@gmail',
             'numero' => '300*******',
-            'cargo' => 'Funcionario',],
+            'cargo' => 'Funcionario',
+            'activo' => true,],
 
             ['cedula'=> '1007726039',
             'nombre'=> 'Felipe hunberto',
             'correo'=> 'martim@gmal',
             'numero' => '300*******',
-            'cargo' => 'Funcionario',],
-
+            'cargo' => 'Funcionario',
+            'activo' => true,],
 
             ['cedula'=> '1007726029',
             'nombre'=> 'wilson cangrejo',
             'correo'=> 'martim@gail',
             'numero' => '300*******',
-            'cargo' => 'Funcionario',],
-
+            'cargo' => 'Funcionario',
+            'activo' => true,],
         ];
         DB::table('responsables')->insert($responsable);
     }

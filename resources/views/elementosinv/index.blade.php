@@ -27,7 +27,7 @@
                     <div class="card">
                         <div class="card-body">
 
-                            @can('crear-Usuario')
+                            @can('crear-rol')
                                 <a class="form-control btn btn-success" href="crearelementoinv">Nuevo</a>
                             @endcan
 
@@ -41,13 +41,15 @@
                                     <th style="color:#fff;">Contrato reacionado</th>
                                     <th style="color:#fff;">Objeto Contractual</th>
                                     <th style="color:#fff;">Estado</th>
+                                    <th style="color:#fff;">Observaciones</th>
+                                    <th style="color:#fff;">Responsable</th>
                                     <th style="color:#fff;">Cantidad actual</th>
                                     <th style="color:#fff;">Cantidad total</th>
                                     <th style="color:#fff;">Precio unitario</th>
                                     <th style="color:#fff;">Precio Total</th>
                                     <th style="color:#fff;">Fecha Creacion</th>
                                     <th style="color:#fff;">Codigo QR</th>
-                                    @can('editar-Usuario')
+                                    @can('editar-rol')
                                         <th style="color:#fff;">acciones</th>
                                     @endcan
                                 </thead>
@@ -62,6 +64,8 @@
                                             <td>{{ $elementoinventario->numero }}</td>
                                             <td>{{ $elementoinventario->objetocontractual }}</td>
                                             <td>{{ $elementoinventario->nombreestado }}</td>
+                                            <td>{{ $elementoinventario->observaciones }}</td>
+                                            <td>{{ $elementoinventario->nombre }}</td>
                                             <td>{{ $elementoinventario->cantidad }}</td>
                                             <td>{{ $elementoinventario->cantidadtotal }}</td>
                                             <td>{{ $elementoinventario->preciounitario }}</td>
@@ -77,8 +81,6 @@
                                                 ->margin(1) //defino el margen
                                                 ->generate($elementoinventario->id)}}
 
-
-
                                             </td>
 
 
@@ -90,7 +92,7 @@
 
 
                                                     @if ($elementoinventario->consumible == 'si')
-                                                        @can('editar-Usuario')
+                                                        @can('editar-rol')
                                                             <a class="btn btn-info"
                                                                 href="{{ route('elementosinv.edit', $elementoinventario->id) }}">Añadir</a>
                                                         @endcan
@@ -112,7 +114,7 @@
 
                             <!-- Ubicamos la paginacion a la derecha -->
                             <div class="pagination justify-content-end">
-
+<a href="{{route('elementos.export')}}" class='btn btn-success'>Exportar Elementos</a>
                             </div>
                         </div>
                     </div>

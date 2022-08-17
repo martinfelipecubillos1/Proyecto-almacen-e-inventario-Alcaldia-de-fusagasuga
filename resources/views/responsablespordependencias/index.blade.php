@@ -73,14 +73,14 @@
 @else
 
                                     @foreach ($responsablespordependencias as $responsablespordependencia)
-                                    @if ($responsablespordependencia->activo == "si")
+                                    @if ($responsablespordependencia->activo == true)
                                         <tr>
                                             <td style="display: none;">{{ $responsablespordependencia->id }}</td>
                                             <td>{{ $responsablespordependencia->nombre }}</td>
                                             <td>{{ $responsablespordependencia->cargo }}</td>
                                             <td>{{ $responsablespordependencia->nombredependencia }}</td>
                                             <td>
-                                                @if ($responsablespordependencia->jefe == '')
+                                                @if ($responsablespordependencia->jefe == false)
                                                 @else
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value=""
@@ -145,14 +145,14 @@
                                     <tbody>
                                         @foreach ($responsablespordependencias as $responsablespordependencia)
 
-                                        @if ($responsablespordependencia->activo == "")
+                                        @if ($responsablespordependencia->activo == false)
                                             <tr>
                                                 <td style="display: none;">{{ $responsablespordependencia->id }}</td>
                                                 <td>{{ $responsablespordependencia->nombre }}</td>
                                                 <td>{{ $responsablespordependencia->cargo }}</td>
                                                 <td>{{ $responsablespordependencia->nombredependencia }}</td>
                                                 <td>
-                                                    @if ($responsablespordependencia->jefe == '')
+                                                    @if ($responsablespordependencia->jefe == false)
                                                     @else
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value=""

@@ -99,22 +99,16 @@
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <input class="form-check-input" type="checkbox" value="si" id="finalizado"
+                                    <input class="form-check-input" type="checkbox" value="true" id="finalizado"
                                         name="finalizado">
                                     <label class="form-check-label" for="">
                                         Finalizado?
                                     </label>
                                 </div>
                             </div>
-                            <br>
-
+                            <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </div>
-
-
-
-
-                    <button type="submit" class="btn btn-primary">Guardar</button>
                     </form>
                 </div>
             </div>

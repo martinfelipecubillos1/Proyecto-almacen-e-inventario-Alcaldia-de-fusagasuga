@@ -46,7 +46,7 @@ class ElementoController extends Controller
         //dd($request->all());
         request()->validate([
             'nombreelemento' => 'required',
-            'marca' => 'required',
+            //'marca' => 'required',
             'descripcion' => 'required',
         ]);
         if (request('nombreelemento'))

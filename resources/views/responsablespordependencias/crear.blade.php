@@ -34,7 +34,12 @@
                                     <select class="form-control" name="responsable" id="responsable">
                                         <option value=""> Seleccione.</option>
                                         @foreach ($responsables as $responsable)
+                                            @if ($responsable->activo == true)
+
+                                            @else
                                             <option value="{{$responsable->id}}">{{$responsable->nombre}} ({{$responsable->cedula}})</option>
+                                            @endif
+
                                             @endforeach
                                     </select>
 

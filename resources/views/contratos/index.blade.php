@@ -11,6 +11,19 @@
                     <div class="card">
                         <div class="card-body">
 
+                            @if(session()->has('message'))
+                            @if(session()->get('message') == 0)
+                            <div class="alert alert-danger">
+                                Archivo no encontrado en el servidor
+                            </div>
+                            @else
+                            <div class="alert alert-success">
+                                Archivo Descargado
+                            </div>
+                            @endif
+                        @endif
+
+
                             @can('crear-Usuario')
                                 <a class="btn btn-warning" href="/crearcontratos">Nuevo Contrato o Donacion </a><br>
                             @endcan
@@ -39,32 +52,28 @@
                                             <tr>
                                                 <td>{{ $Contra->id }}</td>
 
-                                                <td>
-
-                                                    @php
-                                                        $cadena = $Contra->numero;
-                                                        $list = explode('-', $cadena);
-                                                    @endphp
-                                                    {{ $list[0] }}</td>
+                                                <td>{{ $Contra->numero }}</td>
 
                                                 <td>{{ $Contra->objetocontractual }}</td>
                                                 <td>{{ $Contra->nombreproveedor }}</td>
                                                 <td>{{ $Contra->nombredependencia }}</td>
-                                                <td>{{ $Contra->tipodecontrato }}</td>
+                                                <td>{{ $Contra->tipodecontrato}} {{ $Contra->tipodedonacion}} </td>
                                                 <td>{{ $Contra->costo }}</td>
                                                 <td>{{ $Contra->formadepago }}</td>
                                                 <td>{{ $Contra->lugarentrega }}</td>
                                                 <td>{{ $Contra->plazoentrega }}</td>
                                                 <td>{{ $Contra->otrascondiciones }}</td>
                                                 <td>
-                                                    @if ($Contra->finalizado == '')
+                                                    @if ($Contra->finalizado == false)
                                                         <label class="form-check-label" for="">Activo
                                                         @else
                                                             <label class="form-check-label" for="">Finalizado
                                                     @endif
                                                 </td>
-                                                <td><a class="btn btn-success"href="Archivos/{{ $Contra->pdf }}"
-                                                        target="blank_">Ver documento</a> </td>
+                                                <td>
+                                                    <a class="btn btn-success"href="{{ route('contratos.show', $Contra->id) }}"
+                                                        target="blank_">Descargar</a>
+                                                     </td>
                                                 <td>
                                                     <form action="{{ route('contratos.destroy', $Contra->id) }}"
                                                         method="POST">
@@ -81,54 +90,6 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-
-                                        @foreach ($Contras2 as $Contra2)
-                                            <tr>
-
-                                                <td>{{ $Contra2->id }}</td>
-                                                <td>
-
-                                                    @php
-                                                        $cadena = $Contra2->numero;
-                                                        $list = explode('-', $cadena);
-                                                    @endphp
-                                                    {{ $list[0] }}</td>
-
-                                                <td>{{ $Contra2->objetocontractual }}</td>
-                                                <td>{{ $Contra2->nombreproveedor }}</td>
-                                                <td>{{ $Contra2->nombredependencia }}</td>
-                                                <td>{{ $Contra2->tipodedonacion }}</td>
-                                                <td>{{ $Contra2->costo }}</td>
-                                                <td>{{ $Contra2->formadepago }}</td>
-                                                <td>{{ $Contra2->lugarentrega }}</td>
-                                                <td>{{ $Contra2->plazoentrega }}</td>
-                                                <td>{{ $Contra2->otrascondiciones }}</td>
-                                                <td>
-                                                    @if ($Contra2->finalizado == '')
-                                                        <label class="form-check-label" for="">Activo
-                                                        @else
-                                                            <label class="form-check-label" for="">Finalizado
-                                                    @endif
-                                                </td>
-                                                <td><a class="btn btn-success"href="Archivos/{{ $Contra2->pdf }}"
-                                                        target="blank_">Ver documento</a> </td>
-                                                <td>
-                                                    <form action="{{ route('contratos.destroy', $Contra2->id) }}"
-                                                        method="POST">
-
-                                                        <a class="btn btn-info"
-                                                            href="{{ route('contratos.edit', $Contra2->id) }}">Editar</a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        @can('borrar-dependencia')
-                                                            <button type="submit" class="btn btn-danger">Borrar</button>
-                                                        @endcan
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-
 
 
 

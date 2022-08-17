@@ -23,7 +23,11 @@ class Crearelementoinv extends Component
         $contratos = Contrato::all();
         $elementoinvs = Elementoinventario::all();
 
-
+        $respondependencias = DB::table('responsablespordependencias')
+        ->join('responsables', 'responsables.id', '=', 'responsablespordependencias.responsable')
+        ->join('dependencias', 'dependencias.id', '=', 'responsablespordependencias.dependencia')
+        ->select('responsablespordependencias.*', 'responsables.nombre','responsables.cargo', 'dependencias.nombredependencia')
+        ->get();
 
    //     dd($placaint,$placaext);
 
@@ -32,7 +36,7 @@ class Crearelementoinv extends Component
         $this->Elementos = Elemento::where('codigosubgrupo', $this->selectedSubgrupo)->get();
 
 
-        return view('livewire.crearelementoinv', compact('contratos','estados'),[
+        return view('livewire.crearelementoinv', compact('contratos','estados','respondependencias'),[
             'grupos' => Grupoelemento::all()
                 ])
         ->extends('layouts.app')
