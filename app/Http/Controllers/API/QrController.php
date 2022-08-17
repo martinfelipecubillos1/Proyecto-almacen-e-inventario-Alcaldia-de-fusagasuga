@@ -54,6 +54,7 @@ class QrController extends Controller
                     'elemento' => $elementoinventarios->nombreelemento,
                     'placa_interna' => $elementoinventarios->nombredependencia,
                     'placa_externa' => $elementoinventarios->descripcion,
+                    'asignado' => true,
                     'nombre' => "a $elementoinventarios->nombre",
                 ]
                 ,200,[]
