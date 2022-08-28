@@ -28,93 +28,94 @@
                         <div class="card-body">
 
                             @can('crear-rol')
-                                <a class="form-control btn btn-success" href="crearelementoinv">Nuevo</a>
+                                <a class="btn btn-success" href="crearelementoinv">Nuevo</a>
                             @endcan
+                            <br>
+                            <div class="row" style="overflow-x:auto">
+                                <table class="table table-sm responsive ">
+                                    <thead style="background-color:#6777ef">
 
-                            <table class="table table-sm  ">
-                                <thead style="background-color:#6777ef">
+                                        <th style="color:#fff;">Nombre</th>
+                                        <th style="color:#fff;">Placa interna</th>
+                                        <th style="color:#fff;">Placa externa</th>
+                                        <th style="color:#fff;">Serial</th>
+                                        <th style="color:#fff;">Contrato reacionado</th>
+                                        <th style="color:#fff;">Objeto Contractual</th>
+                                        <th style="color:#fff;">Estado</th>
+                                        <th style="color:#fff;">Observaciones</th>
+                                        <th style="color:#fff;">Responsable</th>
+                                        <th style="color:#fff;">Cantidad actual</th>
+                                        <th style="color:#fff;">Cantidad total</th>
+                                        <th style="color:#fff;">Precio unitario</th>
+                                        <th style="color:#fff;">Precio Total</th>
+                                        <th style="color:#fff;">Fecha Creacion</th>
+                                        <th style="color:#fff;">Codigo QR</th>
+                                        @can('editar-rol')
+                                            <th style="color:#fff;">acciones</th>
+                                        @endcan
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($elementoinventarios as $elementoinventario)
+                                            <tr>
+                                                <td style="display: none;">{{ $elementoinventario->id }}</td>
+                                                <td>{{ $elementoinventario->nombreelemento }}</td>
+                                                <td>{{ $elementoinventario->placainterna }}</td>
+                                                <td>{{ $elementoinventario->placaexterna }}</td>
+                                                <td>{{ $elementoinventario->serial }}</td>
+                                                <td>{{ $elementoinventario->numero }}</td>
+                                                <td>{{ $elementoinventario->objetocontractual }}</td>
+                                                <td>{{ $elementoinventario->nombreestado }}</td>
+                                                <td>{{ $elementoinventario->observaciones }}</td>
+                                                <td>{{ $elementoinventario->nombre }}</td>
+                                                <td>{{ $elementoinventario->cantidad }}</td>
+                                                <td>{{ $elementoinventario->cantidadtotal }}</td>
+                                                <td>{{ $elementoinventario->preciounitario }}</td>
+                                                <td>{{ $elementoinventario->preciototal }}</td>
+                                                <td>{{ $elementoinventario->created_at }}</td>
 
-                                    <th style="color:#fff;">Nombre</th>
-                                    <th style="color:#fff;">Placa interna</th>
-                                    <th style="color:#fff;">Placa externa</th>
-                                    <th style="color:#fff;">Serial</th>
-                                    <th style="color:#fff;">Contrato reacionado</th>
-                                    <th style="color:#fff;">Objeto Contractual</th>
-                                    <th style="color:#fff;">Estado</th>
-                                    <th style="color:#fff;">Observaciones</th>
-                                    <th style="color:#fff;">Responsable</th>
-                                    <th style="color:#fff;">Cantidad actual</th>
-                                    <th style="color:#fff;">Cantidad total</th>
-                                    <th style="color:#fff;">Precio unitario</th>
-                                    <th style="color:#fff;">Precio Total</th>
-                                    <th style="color:#fff;">Fecha Creacion</th>
-                                    <th style="color:#fff;">Codigo QR</th>
-                                    @can('editar-rol')
-                                        <th style="color:#fff;">acciones</th>
-                                    @endcan
-                                </thead>
-                                <tbody>
-                                    @foreach ($elementoinventarios as $elementoinventario)
-                                        <tr>
-                                            <td style="display: none;">{{ $elementoinventario->id }}</td>
-                                            <td>{{ $elementoinventario->nombreelemento }}</td>
-                                            <td>{{ $elementoinventario->placainterna }}</td>
-                                            <td>{{ $elementoinventario->placaexterna }}</td>
-                                            <td>{{ $elementoinventario->serial }}</td>
-                                            <td>{{ $elementoinventario->numero }}</td>
-                                            <td>{{ $elementoinventario->objetocontractual }}</td>
-                                            <td>{{ $elementoinventario->nombreestado }}</td>
-                                            <td>{{ $elementoinventario->observaciones }}</td>
-                                            <td>{{ $elementoinventario->nombre }}</td>
-                                            <td>{{ $elementoinventario->cantidad }}</td>
-                                            <td>{{ $elementoinventario->cantidadtotal }}</td>
-                                            <td>{{ $elementoinventario->preciounitario }}</td>
-                                            <td>{{ $elementoinventario->preciototal }}</td>
-                                            <td>{{ $elementoinventario->created_at }}</td>
+                                                <td>
 
-                                            <td>
+                                                    {{$miQr = QrCode::
+                                                    size(100) //defino el tamaño
+                                                    ->backgroundColor(250, 240, 215) //defino el fondo
+                                                    ->color(0, 0, 0)
+                                                    ->margin(1) //defino el margen
+                                                    ->generate($elementoinventario->id)}}
 
-                                                {{$miQr = QrCode::
-                                                size(100) //defino el tamaño
-                                                ->backgroundColor(250, 240, 215) //defino el fondo
-                                                ->color(0, 0, 0)
-                                                ->margin(1) //defino el margen
-                                                ->generate($elementoinventario->id)}}
-
-                                            </td>
-
-
-                                            <td>
-                                                <form id="eliminar" class="eliminar"
-                                                    action="{{ route('elementosinv.destroy', $elementoinventario->id) }}"
-                                                    method="POST">
+                                                </td>
 
 
+                                                <td>
+                                                    <form id="eliminar" class="eliminar"
+                                                        action="{{ route('elementosinv.destroy', $elementoinventario->id) }}"
+                                                        method="POST">
 
-                                                    @if ($elementoinventario->consumible == 'si')
-                                                        @can('editar-rol')
-                                                            <a class="btn btn-info"
-                                                                href="{{ route('elementosinv.edit', $elementoinventario->id) }}">Añadir</a>
+
+
+                                                        @if ($elementoinventario->consumible == 'si')
+                                                            @can('editar-rol')
+                                                                <a class="btn btn-info"
+                                                                    href="{{ route('elementosinv.edit', $elementoinventario->id) }}">Añadir</a>
+                                                            @endcan
+                                                        @endif
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        @can('borrar-rol')
+                                                            <button type="submit" class="btn btn-danger"
+                                                                onclick="return confirm('¿Está seguro que desea eliminar este registro?')">Borrar</button>
                                                         @endcan
-                                                    @endif
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    @can('borrar-rol')
-                                                        <button type="submit" class="btn btn-danger"
-                                                            onclick="return confirm('¿Está seguro que desea eliminar este registro?')">Borrar</button>
-                                                    @endcan
 
 
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                             <!-- Ubicamos la paginacion a la derecha -->
                             <div class="pagination justify-content-end">
-<a href="{{route('elementos.export')}}" class='btn btn-success'>Exportar Elementos</a>
+                                <a href="{{ route('elementos.export') }}" class='btn btn-success'>Exportar Elementos</a>
                             </div>
                         </div>
                     </div>

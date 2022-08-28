@@ -18,42 +18,42 @@ class grupoelementoseeder extends Seeder
         $grupo =  [
             [
                 'nombregrupo' => 'Muebles ',
-                'color' => 'FF5370',
+                'color' => 'EBD413',
             ],
 
             [
                 'nombregrupo' => 'Electronicos',
-                'color' => 'FF5370',
+                'color' => '2BCDC1',
             ],
 
             [
                 'nombregrupo' => 'Papeleria',
-                'color' => 'FF5370',
+                'color' => 'A2C72C',
             ],
 
             [
                 'nombregrupo' => 'Banda',
-                'color' => 'FF5370',
+                'color' => 'E62D81',
             ],
 
             [
                 'nombregrupo' => 'Construcción',
-                'color' => 'FF5370',
+                'color' => 'F19212',
             ],
 
             [
                 'nombregrupo' => 'Varios',
-                'color' => 'FF5370',
+                'color' => '3BA2C9',
             ],
 
             [
                 'nombregrupo' => 'Emergencias',
-                'color' => 'FF5370',
+                'color' => '5BB224',
             ],
 
             [
                 'nombregrupo' => 'Construcción',
-                'color' => 'FF5370',
+                'color' => '686868',
             ],
 
         ];

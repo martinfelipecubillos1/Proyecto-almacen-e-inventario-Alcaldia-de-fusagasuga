@@ -10,6 +10,7 @@ use App\Models\Elementoinventario;
 use App\Models\Estado;
 use App\Models\Marca;
 use App\Models\Responsable;
+use App\Models\responsablespordependencia;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -186,9 +187,21 @@ return Excel::download(new ElementoinventariosExport, 'Elementos.xlsx');
         $estados = Estado::all();
         $elementos = Elemento::all();
         $contratos = Contrato::all();
-        $elementoinventario = Elementoinventario::find($id);
+        // $elementoinventario = Elementoinventario::find($id);
 
-        return view('elementosinv.editar', compact('elementoinventario', 'elementos', 'contratos', 'estados'));
+
+        $elementoinventario = DB::table('elementoinventarios')
+        ->where('elementoinventarios.id', '=', $id)
+            ->join('responsables', 'responsables.id', '=', 'elementoinventarios.responsable')
+->select('elementoinventarios.*','responsables.nombre')
+->first();
+
+        $respondependencias = DB::table('responsablespordependencias')
+        ->join('responsables', 'responsables.id', '=', 'responsablespordependencias.responsable')
+        ->join('dependencias', 'dependencias.id', '=', 'responsablespordependencias.dependencia')
+        ->select('responsablespordependencias.*', 'responsables.nombre','dependencias.nombredependencia')
+        ->get();
+        return view('elementosinv.editar', compact('elementoinventario', 'elementos', 'contratos', 'estados','respondependencias'));
     }
 
     /**

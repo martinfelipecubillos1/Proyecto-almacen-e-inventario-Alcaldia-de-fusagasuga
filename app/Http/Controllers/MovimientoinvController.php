@@ -104,7 +104,7 @@ class MovimientoinvController extends Controller
             // dd($elementoinv->consumible);
            $elementoinv = Elementoinventario::find($request->elemento);
 
-
+//dd($elementoinv->responsable);
 //dd($elementoinv->preciounitario);
            Movimientoinv::create([
             'responsable' => $request->input('responsable'),
@@ -112,6 +112,8 @@ class MovimientoinvController extends Controller
             'tipomovimiento' => $request->input('tipomovimiento'),
             'usuario' => Auth::user()->id,
             'actualiza' => Auth::user()->id,
+
+            'responsableanterior' => $elementoinv->responsable,
 
             'cantidad' => $request->input('cantidad'),
             'preciounitario' => $elementoinv->preciounitario,

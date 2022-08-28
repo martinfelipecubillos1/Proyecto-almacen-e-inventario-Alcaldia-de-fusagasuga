@@ -6,7 +6,6 @@ use App\Models\Elementoinventario;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromView;
 
@@ -38,7 +37,6 @@ class ElementoinventariosExport implements FromView, ShouldAutoSize
         ->select('elementoinventarios.*', 'elementos.nombreelemento', 'estados.nombreestado', 'contratos.numero', 'contratos.objetocontractual','responsables.nombre')
         ->orderBy('id', 'asc')
         ->get()
-        ]) ;
-
+        ]);
 }
 }

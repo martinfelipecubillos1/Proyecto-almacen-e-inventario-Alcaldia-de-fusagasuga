@@ -15,8 +15,9 @@
         </div>
 
         <div class="section-body">
-            <h5><a class=" text-Black btn btn-secondary"
-                href="{{ route('grupos.index') }}"> Volver
+            <h5><a class="text-white btn"
+                href="{{ route('grupos.index') }}"
+                style="background-color:#6c6b6e"> Volver
                 </a></h5>
 
             <div class="row">
@@ -66,8 +67,7 @@
                         </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>            </div>
         </div>
 
     </section>

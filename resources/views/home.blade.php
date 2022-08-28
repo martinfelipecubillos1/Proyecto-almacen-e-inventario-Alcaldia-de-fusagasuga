@@ -4,7 +4,7 @@
 
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Dashboard</h3>
+            <h3 class="page__heading">Modulos del sistema</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -19,8 +19,8 @@
                                         <div class="card-block">
 
                                             <h5>Usuarios</h5>
-                                            <h2 class="text-right"><i
-                                                    class="fa fa-user f-left"></i><span>{{ $cant_usuarios }}</span></h2>
+                                            <h2 class="text-right">    <img src="{{ asset('img/Blancos/usuarios-blanco-03.png') }}" alt="" width="50">
+                                                <span>{{ $cant_usuarios }}</span></h2>
                                             <p class="m-b-0 text-right"><a href="/usuarios" class="text-white">Ver más</a>
                                             </p>
 
@@ -33,8 +33,7 @@
                                         <div class="card-block">
                                             <h5>Roles</h5>
 
-                                            <h2 class="text-right"><i
-                                                    class="fa fa-user-lock f-left"></i><span>{{ $cant_roles }}</span></h2>
+                                            <h2 class="text-right"> <img src="{{ asset('img/Blancos/roles-blanco-04.png') }}" alt="" width="50"><span>{{ $cant_roles }}</span></h2>
                                             <p class="m-b-0 text-right"><a href="/roles" class="text-white">Ver más</a></p>
                                         </div>
                                     </div>
@@ -45,8 +44,7 @@
                                         <div class="card-block">
                                             <h5>Compañias</h5>
 
-                                            <h2 class="text-right"><i
-                                                    class="fa fa-university f-left"></i><span>{{ $cant_comp }}</span>
+                                            <h2 class="text-right"> <img  src="{{ asset('img/Blancos/compañias-blanco-05.png') }}" alt="" width="50"> <span>{{ $cant_comp }}</span>
                                             </h2>
                                             <p class="m-b-0 text-right"><a href="/companias" class="text-white">Ver más</a>
                                             </p>
@@ -59,8 +57,7 @@
                                         <div class="card-block">
                                             <h5>Dependencias</h5>
 
-                                            <h2 class="text-right"><i
-                                                    class="fa fa-users f-left"></i><span>{{ $cant_depe }}</span></h2>
+                                            <h2 class="text-right"><img  src="{{ asset('img/Blancos/dependencias-blanco-07.png') }}" alt="" width="50"> <span>{{ $cant_depe }}</span></h2>
                                             <p class="m-b-0 text-right"><a href="/dependencias" class="text-white">Ver
                                                     más</a></p>
                                         </div>
@@ -73,7 +70,7 @@
                                         <div class="card-block">
                                         <h5>Contratos</h5>
 
-                                            <h2 class="text-right"><i class="fa fa-user-lock f-left"></i><span>{{$cant_contra}}</span></h2>
+                                            <h2 class="text-right"><img  src="{{ asset('img/Blancos/contratos-blanco-10.png') }}" alt="" width="50"></i><span>{{$cant_contra}}</span></h2>
                                             <p class="m-b-0 text-right"><a href="/contratos" class="text-white">Ver más</a></p>
                                         </div>
                                     </div>
@@ -84,7 +81,7 @@
                                         <div class="card-block">
                                             <h5>Responsables Asignados</h5>
 
-                                            <h2 class="text-right"><i class="fa fa-blog f-left"></i><span>{{$cant_res}}</span></h2>
+                                            <h2 class="text-right"><img  src="{{ asset('img/Blancos/resdependencia-blanco-08.png') }}" alt="" width="50"><span>{{$cant_res}}</span></h2>
                                             <p class="m-b-0 text-right"><a href="/responsablespordependencias" class="text-white">Ver más</a></p>
                                         </div>
                                     </div>
@@ -98,7 +95,7 @@
                                 <div class="card bg-c-blue order-card">
                                         <div class="card-block">
                                         <h5>Elementos del inventario</h5>
-                                            <h2 class="text-right"><i class="fa fa-box f-left"></i><span>{{$cant_elemen}}</span></h2>
+                                            <h2 class="text-right"><img  src="{{ asset('img/Blancos/elementos-de-inventarios-blanco-12.png') }}" alt="" width="50"><span>{{$cant_elemen}}</span></h2>
                                             <p class="m-b-0 text-right"><a href="/elementosinv" class="text-white">Ver más</a></p>
                                         </div>
                                     </div>
@@ -109,7 +106,7 @@
                                         <div class="card-block">
                                             <h5>Movimientos</h5>
 
-                                            <h2 class="text-right"><i class="fa fa-university f-left"></i><span>{{$cant_mov}}</span></h2>
+                                            <h2 class="text-right"><img  src="{{ asset('img/Blancos/movimientoinventaro-blanco-13.png') }}" alt="" width="50"><span>{{$cant_mov}}</span></h2>
                                             <p class="m-b-0 text-right"><a href="/movimientoinvs" class="text-white">Ver más</a></p>
                                         </div>
                                     </div>

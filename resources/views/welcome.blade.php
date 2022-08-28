@@ -40,6 +40,10 @@
               <a  href="{{ route('register') }}" class="btn-get-started">Registrarse</a>
               @endif
           @endauth
+
+    <div class="m-0 row justify-content-cent/er">
+        <img src="{{ asset('img/INVENTARIOSICONS/Logoblanco.png') }}" alt="logoblanco" width="500">
+    </div>
       </div>
   @endif
     </div>

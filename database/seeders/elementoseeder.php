@@ -20,7 +20,7 @@ class elementoseeder extends Seeder
         $elemento =  [
             [
                 'nombreelemento' => 'Computador',
-                'codigosubgrupo' => 3,
+                'codigosubgrupo' => 8,
                 'marca' => 'HP',
                 'descripcion' => "Unidad de computo: 4G de Ram, 1 T de almacenamiento, color plateado de 15 pulgadas",
             ],

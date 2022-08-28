@@ -15,34 +15,31 @@ class colorseeder extends Seeder
     public function run()
     {
         $dependencia =  [
-            ['color'=> 'F91616',
-            'nombrecolor' => 'rojo',],
+            ['color'=> '686868',
+            'nombrecolor' => 'gris',],
 
-            ['color'=> 'F99916',
-            'nombrecolor' => 'Amarillo',],
-
-            ['color'=> '35F916',
-            'nombrecolor' => 'verde',],
-
-            ['color'=> '16F9A0',
-            'nombrecolor' => 'cyan',],
-
-            ['color'=> '16B1F9',
-            'nombrecolor' => 'azul',],
-
-            ['color'=> '2016F9',
-            'nombrecolor' => 'azul rey',],
-
-            ['color'=> '7316F9',
-            'nombrecolor' => 'morado',],
-
-            ['color'=> 'E116F9',
-            'nombrecolor' => 'rosado',],
-
-            ['color'=> 'F9168E',
+            ['color'=> 'C1135C',
             'nombrecolor' => 'fuxia',],
 
-            ['color'=> 'F87209',
+            ['color'=> 'EBD413',
+            'nombrecolor' => 'amarillo',],
+
+            ['color'=> '2BADC1',
+            'nombrecolor' => 'cyan',],
+
+            ['color'=> '3BA2C9',
+            'nombrecolor' => 'azul',],
+
+            ['color'=> '5BB224',
+            'nombrecolor' => 'verde',],
+
+            ['color'=> 'A2C72C',
+            'nombrecolor' => 'verde claro',],
+
+            ['color'=> 'E62D81',
+            'nombrecolor' => 'rosado',],
+
+            ['color'=> 'F19212',
             'nombrecolor' => 'naranja',],
 
 

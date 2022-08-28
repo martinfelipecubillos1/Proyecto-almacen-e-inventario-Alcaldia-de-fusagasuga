@@ -32,8 +32,6 @@
                                 <div class="row">
 
 
-
-
                                     <div class="col-sm-3 ">
                                         <div class="form-group">
                                             <label for="contenido">Grupo de elementos</label>
@@ -137,7 +135,7 @@
                                                     <select class="form-control" name="responsable" id="responsable">
                                                         <option value=""> Seleccione.</option>
                                                         @foreach ($respondependencias as $respondependencia)
-                                                        @if ($selectedresponsable == $respondependencia->id )
+                                                        @if ($selectedresponsable == $respondependencia->id || $respondependencia->id == $elemetario->responsable )
 
                                                         @else
                                                         <option value="{{ $respondependencia->id }}">

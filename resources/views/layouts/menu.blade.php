@@ -1,61 +1,81 @@
-<li class="side-menus  nav-link-lg {{ Request::is('*') ? 'active' : '' }}" >
+<li class="side-menus  nav-link-lg {{ Request::is('*') ? 'active' : '' }}">
 
 
     <a class="nav-link" href="/home">
-        <i class=" fas fa-building"></i><span>Dashboard</span>
+        <img src="{{ asset('img/INVENTARIOSICONS/Dashboard-02.png') }}" alt="" width="25">
+        <span>Modulos del sistema</span>
     </a>
 
     @can('ver-rol')
 
     <a class="nav-link" href="/usuarios">
-        <i class=" fas fa-users"></i><span>Usuarios</span>
+        <img src="{{ asset('img/INVENTARIOSICONS/usuarios.png') }}" alt="" width="25">
+        <span>Usuarios </span>
     </a>
+
     <a class="nav-link" href="/roles">
-        <i class=" fas fa-user-lock"></i><span>Roles</span>
-    </a>
-
-    <a class="nav-link" href="/companias">
-        <i class=" fas fa-university"></i><span>Compañias</span>
+        <img src="{{ asset('img/INVENTARIOSICONS/roles.png') }}" alt="" width="25">
+        <span>Roles </span>
     </a>
 
 
-    <a class="nav-link" href="/responsables">
-        <i class=" fas fa-blog"></i><span>Responsables</span>
-    </a>
+        <hr width="100%" noshade="noshade">
 
-    <a class="nav-link" href="/dependencias">
-        <i class=" fas fa-users"></i><span>Dependencias</span>
-    </a>
+        <a class="nav-link" href="/companias">
+            <img src="{{ asset('img/INVENTARIOSICONS/compañias.png') }}" alt="" width="25">
+            <span>Compañias </span>
+        </a>
 
-    <a class="nav-link" href="/responsablespordependencias">
-        <i class=" fas fa-blog"></i><span>Responsables por dependencias</span>
-    </a>
+        <a class="nav-link" href="/dependencias">
+            <img src="{{ asset('img/INVENTARIOSICONS/dependencias-07.png') }}" alt="" width="25">
+            <span>Dependencias </span>
+        </a>
 
-    <a class="nav-link" href="/proveedores">
-        <i class=" fas fa-blog"></i><span>Proveedores</span>
-    </a>
+        <a class="nav-link" href="/responsables">
+            <img src="{{ asset('img/INVENTARIOSICONS/responsables-06.png') }}" alt="" width="25">
+            <span>Responsables </span>
+        </a>
 
-    <a class="nav-link" href="/contratos">
-        <i class=" fas fa-blog"></i><span>Contratos</span>
-    </a>
+        <a class="nav-link" href="/responsablespordependencias">
+            <img src="{{ asset('img/INVENTARIOSICONS/resdependencia-08.png') }}" alt="" width="25">
+            <span>Responsables por dependencias </span>
+        </a>
 
-    <a class="nav-link" href="/grupos">
-        <i class=" fas fa-users"></i><span>Grupos de Elementos</span>
-    </a>
+        <hr width="100%" noshade="noshade">
+
+        <a class="nav-link" href="/proveedores">
+            <img src="{{ asset('img/INVENTARIOSICONS/proveedores-09.png') }}" alt="" width="25">
+            <span>Proveedores</span>
+        </a>
+
+        <a class="nav-link" href="/contratos">
+            <img src="{{ asset('img/INVENTARIOSICONS/contratos-10.png') }}" alt="" width="25">
+            <span>Contratos</span>
+        </a>
+
+        <hr width="100%" noshade="noshade">
+
+        <a class="nav-link" href="/grupos">
+            <img src="{{ asset('img/INVENTARIOSICONS/grupos-de-elementos-11.png') }}" alt="" width="25">
+            <span>Grupos de Elementos</span>
+        </a>
 
     @endcan
-
     @can('editar-Usuario')
 
     <a class="nav-link" href="/elementosinv">
-        <i class=" fas fa-home"></i><span>Elementos del inventario</span>
+        <img src="{{ asset('img/INVENTARIOSICONS/elementos-de-inventarios-12.png') }}" alt="" width="25">
+        <span>Elementos del inventario</span>
     </a>
 
-    <a class="nav-link" href="/movimientoinvs">
-        <i class=" fas fa-blog"></i><span>Movimientos del inventario</span>
-    </a>
+        <hr width="100%" noshade="noshade">
 
-  @endcan
+        <a class="nav-link" href="/movimientoinvs">
+            <img src="{{ asset('img/INVENTARIOSICONS/movimientoinventaro-13.png') }}" alt="" width="25">
+            <span>Movimientos del inventario</span>
+        </a>
+
+    @endcan
 
 
 

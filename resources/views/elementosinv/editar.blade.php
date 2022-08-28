@@ -33,12 +33,38 @@
                                     <label for="contenido">elemento</label>
                                     @foreach ($elementos as $elemento)
                                         @if ($elemento->id == $elementoinventario->elemento)
-                                            <input style="visibility:hidden " type="text" name="elemento" id="elemento"
+                                            <input style="visibility:hidden " readonly='readonly' type="text" name="elemento" id="elemento"
                                                 value="{{ $elemento->id }}">
                                             <br>
                                             {{ $elemento->nombreelemento }} </input>
                                         @endif
                                     @endforeach
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-3 ">
+                                <div class="form-group">
+                                    <label for="contenido">Empleado Responsable Actual</label>
+                                <input type='text' readonly='readonly' class="form-control" value='{{$elementoinventario->nombre}}'>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-3 ">
+                                <div class="form-group">
+                                    <label  for="contenido">Empleado Responsable</label>
+                                    <select class="form-control" " type="text" name="responsable" id="responsable">
+                                        <option value=""> Seleccione.</option>
+                                        @foreach ($respondependencias as $respondependencia)
+                                        @if($respondependencia->id == $elementoinventario->responsable)
+                                        @else
+                                            <option value="{{ $respondependencia->id }}">
+                                                {{ $respondependencia->nombre }}
+                                            </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
