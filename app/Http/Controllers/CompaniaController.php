@@ -54,8 +54,8 @@ class CompaniaController extends Controller
             //'codigocompania' => 'required',
             'nombrecompania' =>'required',
             'localizacion' =>'required',
-
             ]);
+
             $cambio = $request->all();
             $compania = Compania::find($id);
             $compania->update($request->all());

@@ -40,6 +40,6 @@ class Crearelementoinv extends Component
             'grupos' => Grupoelemento::all()
                 ])
         ->extends('layouts.app')
-        ->section('content');;
+        ->section('content');
     }
 }
