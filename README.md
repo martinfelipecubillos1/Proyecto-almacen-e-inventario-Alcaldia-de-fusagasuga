@@ -3,8 +3,9 @@ Proyecto creado sobre el framework de laravel en su version 8
 
 ## Autor 
 **Martin Felipe Cubillos Escobar**
+*https://www.linkedin.com/in/martin-felipe-cubillos-escobar-8ba236208/
 
-**Ver ejemplo em vivo
+**Ver ejemplo en vivo
 
 https://martinfelipecubillos1.github.io/Proyectoinventario/
 
