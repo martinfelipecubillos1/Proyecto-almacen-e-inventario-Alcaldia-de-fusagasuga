@@ -29,7 +29,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-floating">
                                         <label for="contenido">Numero de Contrato</label>
-                                        <input type="text" name="id" class="form-control">
+                                        <input type="text" name="id" class="form-control" required>
                                     </div>
                                 </div>
 
